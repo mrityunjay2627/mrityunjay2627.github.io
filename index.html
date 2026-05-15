@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Priyanshu M Sharma — AI / ML / Robotics Engineer</title>
-<meta name="description" content="Priyanshu M Sharma — AI Engineer, ML Engineer, and Robotics Software Engineer. M.S. Robotics & AI at Arizona State University. Ex-Deloitte." />
+<meta name="description" content="Priyanshu M Sharma — AI Engineer, ML Engineer, and Robotics Software Engineer. M.S. Robotics and Autonomous Systems (AI) at Arizona State University. Ex-Deloitte." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -49,6 +49,9 @@
   }
 
   .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 720px) {
+    .container { padding: 0 16px; }
+  }
 
   /* ---------- NAV ---------- */
   nav {
@@ -788,6 +791,30 @@
   .form-status.success { color: #2d8a3e; }
   .form-status.error { color: var(--orange-deep); }
 
+  /* ---------- GLOBAL MOBILE RESPONSIVE RULES ----------
+     Shrink the heavy panel padding on small screens so every
+     section's border is visible on all four edges and content
+     stays comfortably inside the viewport. */
+  @media (max-width: 720px) {
+    section { padding: 50px 0; }
+    .hero { padding: 60px 0 50px; }
+    .hero-inner { padding: 32px 22px; }
+    .section-head { padding: 24px 22px; margin-bottom: 32px; gap: 16px; }
+    .lane { padding: 26px 22px; }
+    .about-prose { padding: 28px 22px; }
+    .about-side { padding: 26px 22px; }
+    .timeline-wrap { padding: 28px 22px; }
+    .project-body { padding: 22px 20px 22px; }
+    .skill-group { padding: 24px 20px; }
+    .cert { padding: 16px 18px; }
+    .contact-wrap { padding: 30px 22px; gap: 28px; }
+    .footer-inner { padding: 20px 22px; }
+    /* Tighten Quick Facts so long values wrap nicely */
+    .about-side li { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .about-side li span:last-child { white-space: normal; text-align: left; }
+    .about-side li .qf-wrap { max-width: 100%; text-align: left; }
+  }
+
   /* ---------- FOOTER ---------- */
   footer {
     padding: 40px 0 50px; margin-top: 40px;
@@ -839,7 +866,7 @@
           I build <span class="accent">production AI</span> for messy, <span class="underline">high-impact</span> problems.
         </h1>
         <p class="lede reveal">
-          M.S. Robotics &amp; AI from <strong>Arizona State University</strong>, ex-<strong>Deloitte</strong> consulting analyst.
+          M.S. Robotics and Autonomous Systems (AI) from <strong>Arizona State University</strong>, ex-<strong>Deloitte</strong> consulting analyst.
           I work across <strong>AI engineering</strong>, <strong>ML engineering</strong>, and <strong>robotics software</strong> —
           building agentic systems, fine-tuned LLMs, and the infrastructure that keeps them running in production.
         </p>
@@ -955,7 +982,9 @@
           <li><span>Recent</span> <span>CoDe Lab · ASU</span></li>
           <li><span>Focus</span> <span class="qf-wrap">Agentic AI · LLM Systems · ML Infra · Robotics SWE</span></li>
           <li><span>Looking for</span> <span>AI / ML / Robotics SWE roles</span></li>
-          <li><span>Education</span> <span>M.S. ASU · B.Tech. VIT</span></li>
+          <li><span>Degree</span> <span>M.S.</span></li>
+          <li><span>Course</span> <span class="qf-wrap">Robotics and Autonomous Systems (AI)</span></li>
+          <li><span>University</span> <span class="qf-wrap">Arizona State University</span></li>
           <li><span>GPA</span> <span>3.89 / 4.00</span></li>
           <li><span>Industry exp</span> <span>Deloitte · Eigengram</span></li>
           <li><span>Languages</span> <span>EN · HI</span></li>
@@ -985,7 +1014,7 @@
           technical complexity into business impact without losing the underlying rigor.
         </p>
         <p>
-          I'm now finishing an <strong>M.S. in Robotics &amp; AI at Arizona State University</strong> with a 3.89 GPA.
+          I'm now finishing an <strong>M.S. in Robotics and Autonomous Systems (AI) at Arizona State University</strong> with a 3.89 GPA.
           Beyond the core AI/ML coursework, I've worked on <strong>symbolic planning, reinforcement learning,
           and digital twins for collaborative robots</strong> — wiring perception, kinematics, and learning into
           systems that move actual hardware. Two research roles along the way: agentic AI for aerospace mission
