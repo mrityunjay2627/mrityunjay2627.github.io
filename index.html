@@ -58,16 +58,20 @@
     border-bottom: 1px solid rgba(26, 22, 18, 0.12);
   }
   .nav-inner {
-    max-width: 1180px; margin: 0 auto; padding: 14px 24px;
+    max-width: 1180px; margin: 0 auto; padding: 12px 24px;
     display: flex; justify-content: space-between; align-items: center;
   }
+  /* Logo — orange text name */
   .logo {
     font-family: 'Fraunces', serif;
     font-weight: 700; font-size: 1.25rem;
     letter-spacing: -0.01em;
     color: var(--orange);
     text-decoration: none;
+    transition: opacity 0.2s;
   }
+  .logo:hover { opacity: 0.78; }
+
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a {
     color: var(--ink-soft); text-decoration: none;
@@ -90,7 +94,76 @@
   }
   .nav-cta:hover { background: var(--orange) !important; color: #fefcf7 !important; }
   .nav-cta::after { display: none; }
-  @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  /* Hamburger button — only visible on mobile */
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(26, 22, 18, 0.18);
+    border-radius: 8px;
+    width: 42px; height: 42px;
+    cursor: pointer;
+    align-items: center; justify-content: center;
+    padding: 0;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .nav-toggle:hover { border-color: var(--orange); background: rgba(214, 84, 31, 0.06); }
+  .nav-toggle span {
+    display: block; width: 20px; height: 2px;
+    background: var(--ink); border-radius: 2px;
+    position: relative;
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  .nav-toggle span::before,
+  .nav-toggle span::after {
+    content: ''; position: absolute; left: 0; width: 20px; height: 2px;
+    background: var(--ink); border-radius: 2px;
+    transition: transform 0.3s, top 0.3s, background 0.3s;
+  }
+  .nav-toggle span::before { top: -7px; }
+  .nav-toggle span::after { top: 7px; }
+  /* Hamburger → X transformation when nav is open */
+  .nav-toggle.open span { background: transparent; }
+  .nav-toggle.open span::before { top: 0; transform: rotate(45deg); background: var(--orange); }
+  .nav-toggle.open span::after { top: 0; transform: rotate(-45deg); background: var(--orange); }
+
+  /* Mobile breakpoint: ≤720px */
+  @media (max-width: 720px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-links {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: #fefcf7;
+      border-bottom: 1px solid rgba(26, 22, 18, 0.12);
+      box-shadow: 0 12px 24px rgba(26, 22, 18, 0.08);
+      padding: 8px 16px 18px;
+      transform: translateY(-12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.28s ease, opacity 0.28s ease;
+    }
+    .nav-links.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav-links a {
+      padding: 14px 8px;
+      font-size: 0.95rem;
+      border-bottom: 1px dashed rgba(26, 22, 18, 0.10);
+    }
+    .nav-links a:last-child { border-bottom: none; }
+    .nav-links a::after { display: none; }
+    .nav-cta {
+      margin-top: 10px;
+      text-align: center;
+      padding: 12px 16px !important;
+      font-size: 0.92rem !important;
+    }
+  }
 
   /* ---------- HERO ---------- */
   .hero { padding: 80px 0 70px; position: relative; }
@@ -173,46 +246,65 @@
     transform: translateY(-1px);
   }
 
-  /* Hero side card — quick facts */
-  .hero-card {
-    background: #fefcf7;
-    border: 1px solid rgba(26, 22, 18, 0.14);
-    padding: 28px;
-    border-radius: 4px;
-    box-shadow: var(--shadow-card);
+  /* Hero profile photo (right column) */
+  .hero-photo {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 22px;
+  }
+  .hero-photo-frame {
     position: relative;
-    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+    width: 100%; max-width: 340px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--orange);
+    box-shadow: 0 18px 48px rgba(26, 22, 18, 0.18), 0 0 0 8px rgba(214, 84, 31, 0.08);
+    background: #f0e8d8;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
-  .hero-card:hover {
-    border-color: var(--orange);
-    transform: translateY(-2px);
-    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+  .hero-photo-frame:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 56px rgba(26, 22, 18, 0.22), 0 0 0 10px rgba(214, 84, 31, 0.14);
   }
-  .hero-card::before {
-    content: 'currently'; position: absolute;
-    top: -10px; left: 20px;
-    background: #fefcf7; padding: 0 8px;
+  .hero-photo-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Fallback initials shown only if both .jpg and .png 404 */
+  .hero-photo-fallback {
+    position: absolute; inset: 0;
+    display: none;
+    align-items: center; justify-content: center;
+    background: var(--orange);
+    color: #fefcf7;
+    font-family: 'Fraunces', serif;
+    font-weight: 900; font-size: 6rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-photo-caption {
+    display: inline-flex; align-items: center; gap: 10px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem; color: var(--orange);
-    text-transform: uppercase; letter-spacing: 0.14em;
+    font-size: 0.8rem;
+    color: var(--orange-deep);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    padding: 8px 16px;
+    background: #fefcf7;
+    border: 1px solid rgba(214, 84, 31, 0.3);
+    border-radius: 999px;
   }
-  .card-row { padding: 12px 0; border-bottom: 1px dashed rgba(26, 22, 18, 0.14); }
-  .card-row:last-child { border-bottom: none; }
-  .card-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem; color: var(--ink-muted);
-    text-transform: uppercase; letter-spacing: 0.1em;
-    margin-bottom: 4px;
+  .availability-dot {
+    width: 8px; height: 8px;
+    background: #2d8a3e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(45, 138, 62, 0.18);
+    flex-shrink: 0;
   }
-  .card-value { font-size: 0.92rem; color: var(--ink); font-weight: 500; }
-  .card-value .pill {
-    display: inline-block; background: var(--orange-soft);
-    color: var(--orange-deep); padding: 2px 8px;
-    border-radius: 999px; font-size: 0.74rem;
-    font-weight: 600; margin-left: 6px;
-  }
-  .card-value.open-to-work {
-    color: var(--orange-deep); font-weight: 700;
+  @media (max-width: 900px) {
+    .hero-photo-frame { max-width: 240px; }
   }
 
   /* ---------- SECTION SCAFFOLDING ---------- */
@@ -372,6 +464,16 @@
     font-family: 'JetBrains Mono', monospace;
     color: var(--ink-muted); font-size: 0.84rem;
     white-space: nowrap;
+  }
+  .about-side li .qf-status {
+    color: var(--orange-deep) !important;
+    font-weight: 700;
+  }
+  .about-side li .qf-wrap {
+    white-space: normal !important;
+    text-align: right;
+    line-height: 1.4;
+    max-width: 60%;
   }
 
   /* ---------- EXPERIENCE TIMELINE ---------- */
@@ -714,7 +816,10 @@
 <nav>
   <div class="nav-inner">
     <a class="logo" href="#top">Priyanshu M Sharma</a>
-    <div class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#work">Projects</a>
@@ -750,26 +855,12 @@
         </div>
       </div>
 
-      <aside class="hero-card reveal">
-        <div class="card-row">
-          <div class="card-label">Status</div>
-          <div class="card-value open-to-work">Open to work</div>
-        </div>
-        <div class="card-row">
-          <div class="card-label">Recent</div>
-          <div class="card-value">Graduate Research Assistant<span class="pill">CoDe Lab · ASU</span></div>
-        </div>
-        <div class="card-row">
-          <div class="card-label">Focus</div>
-          <div class="card-value">Agentic AI · LLM Systems · ML Infrastructure · Robotics SWE</div>
-        </div>
-        <div class="card-row">
-          <div class="card-label">Education</div>
-          <div class="card-value">M.S. Robotics &amp; AI · 3.89 GPA</div>
-        </div>
-        <div class="card-row">
-          <div class="card-label">Looking for</div>
-          <div class="card-value">AI / ML / Robotics SWE roles</div>
+      <aside class="hero-photo reveal">
+        <div class="hero-photo-frame">
+          <img src="Profile_Pic.jpg" alt="Priyanshu M Sharma"
+               class="hero-photo-img"
+               onerror="this.onerror=null; this.src='Profile_Pic.png'; this.addEventListener('error', () => { this.style.display='none'; const fb=this.parentNode.querySelector('.hero-photo-fallback'); if(fb) fb.style.display='flex'; });" />
+          <div class="hero-photo-fallback">PS</div>
         </div>
       </aside>
     </div>
@@ -860,11 +951,15 @@
       <div class="about-side reveal">
         <h4>— Quick facts</h4>
         <ul>
+          <li><span>Status</span> <span class="qf-status">Open to work</span></li>
+          <li><span>Recent</span> <span>CoDe Lab · ASU</span></li>
+          <li><span>Focus</span> <span class="qf-wrap">Agentic AI · LLM Systems · ML Infra · Robotics SWE</span></li>
+          <li><span>Looking for</span> <span>AI / ML / Robotics SWE roles</span></li>
           <li><span>Education</span> <span>M.S. ASU · B.Tech. VIT</span></li>
+          <li><span>GPA</span> <span>3.89 / 4.00</span></li>
           <li><span>Industry exp</span> <span>Deloitte · Eigengram</span></li>
           <li><span>Languages</span> <span>EN · HI</span></li>
           <li><span>Available</span> <span>Immediately</span></li>
-          <li><span>GPA</span> <span>3.89 / 4.00</span></li>
         </ul>
       </div>
 
@@ -1955,7 +2050,7 @@
       <div class="contact-left">
         <h3>Got a <em>hard problem?</em></h3>
         <p>
-          I respond to most messages within 24 hours. Best topics: agentic AI architectures, RAG that actually works in production, fine-tuning tradeoffs, and the question of when not to use an LLM at all.
+          I respond to most messages within 24 hours. Best topics: AI and ML infrastructure built to ship, agentic systems past the demo stage, robotics software that survives real hardware, the legacy pipeline nobody wants to touch, and the question of when not to use an LLM at all.
         </p>
         <div class="contact-direct">
           <a href="mailto:mrityunjay2627@gmail.com">
@@ -1978,7 +2073,7 @@
       </div>
 
       <div class="contact-right">
-        <form id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <form id="contactForm" action="https://formspree.io/f/xzdolwwl" method="POST">
           <div class="form-row">
             <label for="cname">Name</label>
             <input type="text" id="cname" name="name" required />
@@ -2028,6 +2123,33 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // --- Mobile nav toggle (hamburger drawer) ---
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    // Close drawer when a link is tapped (mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+    // Close drawer when window grows past mobile breakpoint
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 720 && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 
   // --- Project filtering ---
   const filterBtns = document.querySelectorAll('.filter-btn');

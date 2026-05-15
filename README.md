@@ -7,10 +7,13 @@ A single-file portfolio website. No build step, no dependencies, no framework. J
 ```
 portfolio/
 ├── index.html                       # the entire site (HTML + CSS + JS inline)
+├── Profile_Pic.jpg                  # your headshot (or .png) — shown in nav bar
 └── Priyanshu_Sharma_Resume.pdf      # served by the "Download CV" button
 ```
 
-Both files must be in the same folder when you deploy.
+All three files must be in the same folder when you deploy.
+
+**About the profile picture:** the nav bar tries `Profile_Pic.jpg` first, falls back to `Profile_Pic.png` if the JPG isn't found, then falls back to your initials "PS" in an orange circle if neither image is present. A square crop (1:1 aspect ratio) at around 400×400px works best — the image is displayed in a 42×42 circle.
 
 ## Two things you MUST do before going live
 
