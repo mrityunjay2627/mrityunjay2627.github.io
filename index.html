@@ -18,19 +18,16 @@
     --orange: #d6541f;
     --orange-deep: #b8420f;
     --orange-soft: #f4d4be;
-    --shadow-soft: 0 2px 0 rgba(26, 22, 18, 0.04), 0 8px 24px rgba(26, 22, 18, 0.06);
-    --shadow-card: 0 1px 0 rgba(26, 22, 18, 0.04), 0 12px 36px rgba(26, 22, 18, 0.10);
+    --shadow-soft: 0 1px 0 rgba(26, 22, 18, 0.03), 0 6px 18px rgba(26, 22, 18, 0.07);
+    --shadow-card: 0 1px 0 rgba(26, 22, 18, 0.04), 0 14px 40px rgba(26, 22, 18, 0.12);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
   /* ============================================================
-     FULL-PAGE WHITE BRICK WALL — fixed photo background
-     The photo (brick-bg.png) sits behind everything via a fixed-
-     attachment, cover-sized background image. A soft warm tint
-     on top keeps the rendering consistent with the paper panels
-     and prevents the photo from feeling cold.
+     SOLID CREAM-WHITE BACKGROUND
+     Matches the panel/card color for a clean, unified look.
      ============================================================ */
   body {
     font-family: 'Inter', -apple-system, sans-serif;
@@ -39,24 +36,7 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     min-height: 100vh;
-
-    /* Layered: warm tint on top + brick photo underneath */
-    background-color: #fafaf7;
-    background-image:
-      linear-gradient(180deg, rgba(254, 252, 247, 0.35), rgba(254, 252, 247, 0.55)),
-      url('brick-bg.png');
-    background-size: auto, cover;
-    background-position: center top, center center;
-    background-repeat: no-repeat, no-repeat;
-    background-attachment: fixed, fixed;
-  }
-
-  /* On mobile, fixed-attachment is glitchy in iOS Safari — fall back to scroll */
-  @media (max-width: 720px) {
-    body {
-      background-attachment: scroll, scroll;
-      background-size: auto, cover;
-    }
+    background-color: #fefcf7;
   }
 
   /* Paper panels for content — sit on top of the brick wall */

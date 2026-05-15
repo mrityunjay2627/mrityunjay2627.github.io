@@ -7,11 +7,10 @@ A single-file portfolio website. No build step, no dependencies, no framework. J
 ```
 portfolio/
 ├── index.html                       # the entire site (HTML + CSS + JS inline)
-├── brick-bg.png                     # white-brick wall background photo
 └── Priyanshu_Sharma_Resume.pdf      # served by the "Download CV" button
 ```
 
-**All three files must be in the same folder when you deploy.** If `brick-bg.png` is missing, the site falls back to a plain off-white background — it'll still work, just won't have the texture.
+Both files must be in the same folder when you deploy.
 
 ## Two things you MUST do before going live
 
@@ -97,13 +96,6 @@ The whole site is one file. To update anything:
    ```
 3. Wait ~30 seconds. GitHub Pages will redeploy automatically.
 
-## Swapping the background
-
-The brick wall is just `brick-bg.png`. To use a different image:
-1. Replace `brick-bg.png` with your new image (same filename, or update the reference in `index.html`).
-2. Keep the file under ~500 KB ideally — large background images slow first load.
-3. Commit + push.
-
 ## Replacing the resume
 
 Drop a new `Priyanshu_Sharma_Resume.pdf` into the folder (same name), commit, and push. The download button always points to the same filename.
@@ -119,7 +111,6 @@ If you ever buy a domain (e.g. `priyanshusharma.com`):
 
 - **No build step**: edit `index.html`, push, done.
 - **Fonts**: Fraunces (display), Inter (body), JetBrains Mono (mono) — loaded from Google Fonts.
-- **Background**: `brick-bg.png` is `background-attachment: fixed` on desktop so the wall stays put while you scroll. On mobile (≤720px) it falls back to scrolling attachment because iOS Safari renders fixed-attachment poorly.
 - **Color tokens** live in CSS variables at the top of `<style>`. Change `--orange` once and it cascades everywhere.
 - **No analytics, no trackers** — add them yourself if you want them.
 
@@ -129,10 +120,6 @@ If you ever buy a domain (e.g. `priyanshusharma.com`):
 
 **Site shows 404 after enabling Pages.** Wait a full 2 minutes after enabling Pages. GitHub's first build can take a moment.
 
-**Background looks plain white, no brick.** `brick-bg.png` isn't in the same folder as `index.html`, or didn't get pushed. Check the repo on GitHub — it should be listed alongside `index.html`.
-
 **Resume download doesn't work.** Make sure `Priyanshu_Sharma_Resume.pdf` is in the same folder as `index.html` in the repo (case-sensitive).
 
 **Contact form says "could not send".** Either (a) you haven't replaced `YOUR_FORMSPREE_ID`, or (b) you haven't verified your Formspree email yet. Both required.
-
-**Background jumps/flickers when scrolling on iPhone.** That's normal — iOS Safari doesn't handle `background-attachment: fixed` well, so the site falls back to a scrolling background on small screens. Looks fine, just doesn't have the parallax feel desktop gets.
