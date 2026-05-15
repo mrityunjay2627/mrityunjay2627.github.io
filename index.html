@@ -1,0 +1,2108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Priyanshu M Sharma — AI / ML / Robotics Engineer</title>
+<meta name="description" content="Priyanshu M Sharma — AI Engineer, ML Engineer, and Robotics Software Engineer. M.S. Robotics & AI at Arizona State University. Ex-Deloitte." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brick: #ffffff;
+    --mortar: #1a1612;
+    --ink: #1a1612;
+    --ink-soft: #4a423a;
+    --ink-muted: #7a6f63;
+    --orange: #d6541f;
+    --orange-deep: #b8420f;
+    --orange-soft: #f4d4be;
+    --shadow-soft: 0 2px 0 rgba(26, 22, 18, 0.04), 0 8px 24px rgba(26, 22, 18, 0.06);
+    --shadow-card: 0 1px 0 rgba(26, 22, 18, 0.04), 0 12px 36px rgba(26, 22, 18, 0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  /* ============================================================
+     FULL-PAGE WHITE BRICK WALL — fixed photo background
+     The photo (brick-bg.png) sits behind everything via a fixed-
+     attachment, cover-sized background image. A soft warm tint
+     on top keeps the rendering consistent with the paper panels
+     and prevents the photo from feeling cold.
+     ============================================================ */
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+
+    /* Layered: warm tint on top + brick photo underneath */
+    background-color: #fafaf7;
+    background-image:
+      linear-gradient(180deg, rgba(254, 252, 247, 0.35), rgba(254, 252, 247, 0.55)),
+      url('brick-bg.png');
+    background-size: auto, cover;
+    background-position: center top, center center;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: fixed, fixed;
+  }
+
+  /* On mobile, fixed-attachment is glitchy in iOS Safari — fall back to scroll */
+  @media (max-width: 720px) {
+    body {
+      background-attachment: scroll, scroll;
+      background-size: auto, cover;
+    }
+  }
+
+  /* Paper panels for content — sit on top of the brick wall */
+  .panel {
+    background: #fefcf7;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    border-radius: 2px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+  }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(14px) saturate(140%);
+    background: rgba(255, 255, 255, 0.88);
+    border-bottom: 1px solid rgba(26, 22, 18, 0.12);
+  }
+  .nav-inner {
+    max-width: 1180px; margin: 0 auto; padding: 14px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 700; font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    color: var(--orange);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    color: var(--ink-soft); text-decoration: none;
+    font-size: 0.86rem; font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: -4px;
+    width: 0; height: 1.5px; background: var(--orange);
+    transition: width 0.25s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--ink); color: #fefcf7 !important;
+    padding: 8px 16px; border-radius: 999px;
+    font-size: 0.82rem !important;
+  }
+  .nav-cta:hover { background: var(--orange) !important; color: #fefcf7 !important; }
+  .nav-cta::after { display: none; }
+  @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  /* ---------- HERO ---------- */
+  .hero { padding: 80px 0 70px; position: relative; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .hero-inner {
+    background: #fefcf7;
+    padding: 48px 44px;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    border-radius: 4px;
+    box-shadow: var(--shadow-card);
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .hero-inner:hover {
+    border-color: var(--orange);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+  }
+
+  h1.headline {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  h1.headline .accent {
+    font-style: italic;
+    color: var(--orange);
+    font-weight: 400;
+  }
+  h1.headline .underline {
+    position: relative; display: inline-block;
+  }
+  h1.headline .underline::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 6px;
+    height: 14px; background: var(--orange-soft); z-index: -1;
+    transform: skew(-2deg);
+  }
+
+  .lede {
+    font-size: 1.1rem; color: var(--ink-soft);
+    max-width: 580px; margin-bottom: 36px;
+    line-height: 1.65;
+  }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 22px; border-radius: 999px;
+    font-size: 0.92rem; font-weight: 500;
+    text-decoration: none; transition: all 0.22s;
+    border: 1.5px solid transparent;
+    cursor: pointer; font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--orange); color: #fefcf7;
+    border-color: var(--orange);
+    box-shadow: 0 1px 0 var(--orange-deep), 0 6px 16px rgba(214, 84, 31, 0.25);
+  }
+  .btn-primary:hover {
+    background: var(--orange-deep); transform: translateY(-1px);
+    border-color: var(--orange-deep);
+    box-shadow: 0 1px 0 var(--orange-deep), 0 10px 28px rgba(214, 84, 31, 0.45);
+  }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    border-color: var(--ink);
+  }
+  .btn-secondary:hover {
+    background: transparent; color: var(--orange);
+    border-color: var(--orange);
+    box-shadow: 0 6px 18px rgba(214, 84, 31, 0.20);
+    transform: translateY(-1px);
+  }
+
+  /* Hero side card — quick facts */
+  .hero-card {
+    background: #fefcf7;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    padding: 28px;
+    border-radius: 4px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .hero-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+  }
+  .hero-card::before {
+    content: 'currently'; position: absolute;
+    top: -10px; left: 20px;
+    background: #fefcf7; padding: 0 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; color: var(--orange);
+    text-transform: uppercase; letter-spacing: 0.14em;
+  }
+  .card-row { padding: 12px 0; border-bottom: 1px dashed rgba(26, 22, 18, 0.14); }
+  .card-row:last-child { border-bottom: none; }
+  .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .card-value { font-size: 0.92rem; color: var(--ink); font-weight: 500; }
+  .card-value .pill {
+    display: inline-block; background: var(--orange-soft);
+    color: var(--orange-deep); padding: 2px 8px;
+    border-radius: 999px; font-size: 0.74rem;
+    font-weight: 600; margin-left: 6px;
+  }
+  .card-value.open-to-work {
+    color: var(--orange-deep); font-weight: 700;
+  }
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section { padding: 70px 0; position: relative; }
+  .section-head {
+    margin-bottom: 48px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 32px; flex-wrap: wrap;
+
+    background: #fefcf7;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    border-radius: 4px;
+    padding: 32px 36px;
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .section-head:hover {
+    border-color: var(--orange);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+  }
+  h2.section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0;
+  }
+  h2.section-title em { color: var(--orange); font-style: italic; font-weight: 400; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--orange);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .section-desc {
+    max-width: 460px; color: var(--ink-soft);
+    font-size: 1rem; line-height: 1.6;
+  }
+
+  /* ---------- POSITIONING LANES ---------- */
+  .lanes {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  @media (max-width: 820px) { .lanes { grid-template-columns: 1fr; } }
+  .lane {
+    background: #fefcf7;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    padding: 32px 28px;
+    border-radius: 4px;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+  .lane:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+    border-color: var(--orange);
+  }
+  .lane::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%; background: var(--orange);
+    transform: scaleY(0.3); transform-origin: top;
+    transition: transform 0.3s;
+  }
+  .lane:hover::before { transform: scaleY(1); }
+  .lane-icon {
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    color: var(--orange);
+  }
+  .lane-icon svg { width: 100%; height: 100%; }
+  .lane h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem; font-weight: 600;
+    margin-bottom: 12px; color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .lane p {
+    color: var(--ink-soft); font-size: 0.95rem;
+    line-height: 1.6; margin-bottom: 16px;
+  }
+  .lane-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+  }
+  .lane-tag {
+    background: rgba(214, 84, 31, 0.08);
+    color: var(--orange-deep);
+    padding: 4px 10px; border-radius: 3px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px;
+    align-items: stretch;
+  }
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 24px; } }
+  .about-prose {
+    background: #fefcf7;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    padding: 36px 38px;
+    border-radius: 4px;
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .about-prose:hover {
+    border-color: var(--orange);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+  }
+  .about-prose p {
+    font-size: 1.06rem; color: var(--ink-soft);
+    margin-bottom: 18px; line-height: 1.7;
+  }
+  .about-prose p:last-child { margin-bottom: 0; }
+  .about-prose p strong { color: var(--ink); font-weight: 600; }
+  .about-prose p .marked {
+    background: linear-gradient(transparent 62%, var(--orange-soft) 62%);
+    padding: 0 2px;
+  }
+  .about-side {
+    background: #fefcf7;
+    padding: 32px 28px;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    border-left: 5px solid var(--orange);
+    border-radius: 4px;
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .about-side:hover {
+    border-color: var(--orange);
+    border-left-color: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+  }
+  .about-side h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem; color: var(--orange);
+    text-transform: uppercase; letter-spacing: 0.14em;
+    margin-bottom: 16px;
+  }
+  .about-side ul { list-style: none; }
+  .about-side li {
+    padding: 10px 0; border-bottom: 1px dashed rgba(26, 22, 18, 0.12);
+    font-size: 0.95rem; color: var(--ink);
+    display: flex; justify-content: space-between; gap: 12px;
+  }
+  .about-side li:last-child { border-bottom: none; }
+  .about-side li span:last-child {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink-muted); font-size: 0.84rem;
+    white-space: nowrap;
+  }
+
+  /* ---------- EXPERIENCE TIMELINE ---------- */
+  .timeline-wrap {
+    background: #fefcf7;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    border-radius: 4px;
+    padding: 44px 48px;
+    box-shadow: var(--shadow-card);
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .timeline-wrap:hover {
+    border-color: var(--orange);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+  }
+  @media (max-width: 700px) { .timeline-wrap { padding: 32px 24px; } }
+  .timeline { position: relative; padding-left: 36px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 10px; top: 8px; bottom: 8px;
+    width: 2px; background: var(--ink);
+    opacity: 0.18;
+  }
+  .tl-item { position: relative; padding-bottom: 40px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -32px; top: 8px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #fefcf7; border: 2.5px solid var(--orange);
+  }
+  .tl-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem; color: var(--orange);
+    letter-spacing: 0.08em; margin-bottom: 6px;
+  }
+  .tl-role {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem; font-weight: 600;
+    margin-bottom: 4px; letter-spacing: -0.01em;
+  }
+  .tl-company {
+    color: var(--ink-soft); font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+  .tl-company strong { color: var(--ink); font-weight: 600; }
+  .tl-body { font-size: 0.94rem; color: var(--ink-soft); line-height: 1.65; }
+  .tl-body ul { list-style: none; padding-left: 0; }
+  .tl-body li {
+    padding: 6px 0 6px 22px; position: relative;
+  }
+  .tl-body li::before {
+    content: '→'; position: absolute; left: 0; top: 6px;
+    color: var(--orange); font-weight: 700;
+  }
+  .tl-body li strong { color: var(--ink); font-weight: 600; }
+  .tl-body li .num { color: var(--orange-deep); font-weight: 700; }
+
+  /* ---------- PROJECTS ---------- */
+  .filters {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px;
+    background: #fefcf7;
+    padding: 14px 18px;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    border-radius: 999px;
+    box-shadow: var(--shadow-soft);
+    width: fit-content;
+  }
+  .filter-btn {
+    padding: 8px 16px; border-radius: 999px;
+    background: transparent; border: 1px solid rgba(26, 22, 18, 0.16);
+    color: var(--ink-soft); font-family: inherit;
+    font-size: 0.85rem; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+  .filter-btn.active {
+    background: var(--ink); color: #fefcf7;
+    border-color: var(--ink);
+  }
+  .filter-btn .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; opacity: 0.6; margin-left: 4px;
+  }
+
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+  }
+  @media (max-width: 820px) { .projects-grid { grid-template-columns: 1fr; } }
+
+  .project {
+    background: #fefcf7;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    display: flex; flex-direction: column;
+    box-shadow: var(--shadow-soft);
+  }
+  .project:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+    border-color: var(--orange);
+  }
+  .project-visual {
+    aspect-ratio: 16 / 9;
+    background: #f9f5ec;
+    border-bottom: 1px solid rgba(26, 22, 18, 0.14);
+    position: relative; overflow: hidden;
+  }
+  .project-visual svg { width: 100%; height: 100%; display: block; }
+  .project-body { padding: 24px 26px 26px; flex: 1; display: flex; flex-direction: column; }
+  .project-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px; gap: 12px;
+  }
+  .project-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; text-transform: uppercase;
+    color: var(--orange); letter-spacing: 0.1em;
+  }
+  .project-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--ink-muted);
+  }
+  .project h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem; font-weight: 600;
+    margin-bottom: 10px; line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .project-finding {
+    font-size: 1rem; color: var(--ink);
+    margin-bottom: 14px; line-height: 1.5;
+    font-weight: 500;
+  }
+  .project-finding .metric {
+    color: var(--orange-deep); font-weight: 700;
+  }
+  .project-detail {
+    font-size: 0.92rem; color: var(--ink-soft);
+    line-height: 1.6; margin-bottom: 16px;
+  }
+  .project-stack {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: auto; padding-top: 14px;
+    border-top: 1px dashed rgba(26, 22, 18, 0.14);
+  }
+  .stack-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--ink-muted);
+    background: rgba(26, 22, 18, 0.05);
+    padding: 3px 8px; border-radius: 3px;
+  }
+  .project-links { margin-top: 14px; display: flex; gap: 14px; }
+  .project-link {
+    font-size: 0.82rem; color: var(--ink);
+    text-decoration: none; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 4px;
+    border-bottom: 1px solid var(--orange);
+    padding-bottom: 1px;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--orange); }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+  }
+  @media (max-width: 720px) { .skills-grid { grid-template-columns: 1fr; } }
+  .skill-group {
+    background: #fefcf7; padding: 28px;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    border-radius: 4px;
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .skill-group:hover {
+    border-color: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+  }
+  .skill-group h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem; text-transform: uppercase;
+    color: var(--orange); letter-spacing: 0.14em;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .skill-group h4::after {
+    content: ''; flex: 1; height: 1px;
+    background: rgba(214, 84, 31, 0.18);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill-tag {
+    background: #f5efe6;
+    color: var(--ink);
+    padding: 6px 12px; border-radius: 3px;
+    font-size: 0.85rem; font-weight: 500;
+    border: 1px solid rgba(26, 22, 18, 0.08);
+    transition: all 0.2s;
+  }
+  .skill-tag:hover {
+    background: var(--ink); color: #fefcf7;
+    border-color: var(--ink);
+  }
+  .skill-tag.featured {
+    background: var(--ink); color: #fefcf7;
+    border-color: var(--ink);
+  }
+
+  /* ---------- CERTIFICATIONS ---------- */
+  .certs-list {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  @media (max-width: 700px) { .certs-list { grid-template-columns: 1fr; } }
+  .cert {
+    background: #fefcf7; padding: 18px 22px;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    border-radius: 4px;
+    display: flex; gap: 16px; align-items: center;
+    text-decoration: none; color: inherit;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-soft);
+  }
+  .cert:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+    border-color: var(--orange);
+  }
+  .cert:hover .cert-arrow { color: var(--orange); transform: translateX(2px); }
+  .cert-mark {
+    width: 42px; height: 42px; flex-shrink: 0;
+    border-radius: 50%; background: var(--orange-soft);
+    color: var(--orange-deep);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: 0.92rem;
+  }
+  .cert-body { flex: 1; }
+  .cert-body strong { display: block; font-weight: 600; color: var(--ink); font-size: 0.95rem; margin-bottom: 2px; }
+  .cert-body span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem; color: var(--ink-muted);
+  }
+  .cert-arrow {
+    color: var(--ink-muted);
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-wrap {
+    background: #fefcf7;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    padding: 56px 48px; border-radius: 4px;
+    box-shadow: var(--shadow-card);
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .contact-wrap:hover {
+    border-color: var(--orange);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
+  }
+  @media (max-width: 820px) {
+    .contact-wrap { grid-template-columns: 1fr; padding: 36px 28px; gap: 36px; }
+  }
+  .contact-left h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.9rem; font-weight: 500;
+    line-height: 1.1; margin-bottom: 18px;
+    letter-spacing: -0.01em;
+  }
+  .contact-left h3 em { color: var(--orange); font-style: italic; }
+  .contact-left p {
+    color: var(--ink-soft); margin-bottom: 24px;
+    line-height: 1.6; font-size: 0.98rem;
+  }
+  .contact-direct {
+    display: flex; flex-direction: column; gap: 12px;
+    padding-top: 24px; border-top: 1px dashed rgba(26, 22, 18, 0.14);
+  }
+  .contact-direct a {
+    color: var(--ink); text-decoration: none;
+    font-size: 0.95rem; display: flex; align-items: center; gap: 10px;
+    transition: color 0.2s;
+  }
+  .contact-direct a:hover { color: var(--orange); }
+  .contact-direct svg { color: var(--orange); flex-shrink: 0; }
+
+  .form-row { margin-bottom: 18px; }
+  .form-row label {
+    display: block; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+  .form-row input, .form-row textarea {
+    width: 100%; padding: 12px 14px;
+    background: #f9f5ec;
+    border: 1px solid rgba(26, 22, 18, 0.16);
+    border-radius: 3px;
+    font-family: inherit; font-size: 0.95rem;
+    color: var(--ink); transition: border-color 0.2s;
+  }
+  .form-row input:focus, .form-row textarea:focus {
+    outline: none; border-color: var(--orange);
+    background: #fefcf7;
+  }
+  .form-row textarea { resize: vertical; min-height: 110px; }
+  .form-status {
+    margin-top: 10px; font-size: 0.88rem;
+    min-height: 22px;
+  }
+  .form-status.success { color: #2d8a3e; }
+  .form-status.error { color: var(--orange-deep); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 40px 0 50px; margin-top: 40px;
+  }
+  .footer-inner {
+    background: #fefcf7;
+    border: 1px solid rgba(26, 22, 18, 0.14);
+    border-radius: 4px;
+    padding: 24px 32px;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 16px;
+    font-size: 0.84rem; color: var(--ink-muted);
+    box-shadow: var(--shadow-soft);
+  }
+  .footer-inner a { color: var(--ink-soft); text-decoration: none; }
+  .footer-inner a:hover { color: var(--orange); }
+
+  /* ---------- ANIMATIONS ---------- */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#top">Priyanshu M Sharma</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-inner">
+        <h1 class="headline reveal">
+          I build <span class="accent">production AI</span> for messy, <span class="underline">high-impact</span> problems.
+        </h1>
+        <p class="lede reveal">
+          M.S. Robotics &amp; AI from <strong>Arizona State University</strong>, ex-<strong>Deloitte</strong> consulting analyst.
+          I work across <strong>AI engineering</strong>, <strong>ML engineering</strong>, and <strong>robotics software</strong> —
+          building agentic systems, fine-tuned LLMs, and the infrastructure that keeps them running in production.
+        </p>
+        <div class="hero-cta reveal">
+          <a class="btn btn-primary" href="#work">
+            See my work
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn-secondary" href="Priyanshu_Sharma_Resume.pdf" download>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download CV
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero-card reveal">
+        <div class="card-row">
+          <div class="card-label">Status</div>
+          <div class="card-value open-to-work">Open to work</div>
+        </div>
+        <div class="card-row">
+          <div class="card-label">Recent</div>
+          <div class="card-value">Graduate Research Assistant<span class="pill">CoDe Lab · ASU</span></div>
+        </div>
+        <div class="card-row">
+          <div class="card-label">Focus</div>
+          <div class="card-value">Agentic AI · LLM Systems · ML Infrastructure · Robotics SWE</div>
+        </div>
+        <div class="card-row">
+          <div class="card-label">Education</div>
+          <div class="card-value">M.S. Robotics &amp; AI · 3.89 GPA</div>
+        </div>
+        <div class="card-row">
+          <div class="card-label">Looking for</div>
+          <div class="card-value">AI / ML / Robotics SWE roles</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<!-- POSITIONING LANES -->
+<section id="positioning" style="padding-top:20px">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-label">— Where I work</span>
+        <h2 class="section-title">Three lanes, <em>one engineer.</em></h2>
+      </div>
+      <p class="section-desc">
+        My background sits at the intersection of applied AI, model work, and robotics software. Here's what each lane looks like in practice.
+      </p>
+    </div>
+
+    <div class="lanes">
+      <div class="lane reveal">
+        <div class="lane-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
+        </div>
+        <h3>AI Engineer</h3>
+        <p>
+          Production GenAI: agentic systems, RAG pipelines, LLM orchestration, and the eval + observability stack around them. I focus on what breaks in real deployments, not just demos.
+        </p>
+        <div class="lane-tags">
+          <span class="lane-tag">LangChain</span>
+          <span class="lane-tag">MCP</span>
+          <span class="lane-tag">RAG</span>
+          <span class="lane-tag">Multi-agent</span>
+          <span class="lane-tag">LangSmith</span>
+        </div>
+      </div>
+
+      <div class="lane reveal">
+        <div class="lane-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+        </div>
+        <h3>ML Engineer</h3>
+        <p>
+          Models from scratch and at scale: transformer architectures, parameter-efficient fine-tuning, training pipelines, and inference optimization. I've implemented LLaMA 2 in PyTorch end-to-end.
+        </p>
+        <div class="lane-tags">
+          <span class="lane-tag">PyTorch</span>
+          <span class="lane-tag">LoRA / QLoRA</span>
+          <span class="lane-tag">Transformers</span>
+          <span class="lane-tag">CUDA</span>
+          <span class="lane-tag">A/B testing</span>
+        </div>
+      </div>
+
+      <div class="lane reveal">
+        <div class="lane-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M8 8V4M16 8V4M9 14h.01M15 14h.01M9 18h6"/></svg>
+        </div>
+        <h3>Robotics SWE</h3>
+        <p>
+          Where AI meets physical systems. Digital twins, kinematics, vision-guided motion planning, and the Python ↔ ROS2 ↔ hardware link. I think in coordinate frames and joint limits.
+        </p>
+        <div class="lane-tags">
+          <span class="lane-tag">ROS2</span>
+          <span class="lane-tag">OpenCV</span>
+          <span class="lane-tag">MATLAB / Simscape</span>
+          <span class="lane-tag">Reinforcement Learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-label">— About</span>
+        <h2 class="section-title">The <em>forward-deployed</em> mindset.</h2>
+      </div>
+      <p class="section-desc">
+        The most valuable engineers aren't just technically skilled — they're translators between strategy and execution.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-side reveal">
+        <h4>— Quick facts</h4>
+        <ul>
+          <li><span>Education</span> <span>M.S. ASU · B.Tech. VIT</span></li>
+          <li><span>Industry exp</span> <span>Deloitte · Eigengram</span></li>
+          <li><span>Languages</span> <span>EN · HI</span></li>
+          <li><span>Available</span> <span>Immediately</span></li>
+          <li><span>GPA</span> <span>3.89 / 4.00</span></li>
+        </ul>
+      </div>
+
+      <div class="about-prose reveal">
+        <p>
+          I started out at <strong>VIT</strong> with a B.Tech. in CS &amp; Business Systems — a hybrid program that
+          paired the engineering core with finance, operations, and product thinking. That mix turned out to be the
+          thread that's followed me everywhere since.
+        </p>
+        <p>
+          My first real exposure to the field was a six-month stint as a <strong>business analyst at Upthrust</strong>,
+          where I lived in BI dashboards, built sales funnels with senior leadership, and learned how a clean piece of
+          analysis can move a real decision. The summer after that, I joined <strong>Eigengram</strong> — a medical AI
+          startup — as a software engineer intern, working alongside the two technical founders on data pipelines and
+          model deployment for clinical applications. It was my first taste of what shipping AI under real constraints
+          actually feels like.
+        </p>
+        <p>
+          From there I joined <strong>Deloitte</strong> as a Consulting Analyst in Strategy &amp; Analytics, where I
+          spent a year embedded with global clients — building <span class="marked">AI systems on tight deadlines,
+          presenting architecture tradeoffs to senior stakeholders</span>, and operating inside an agile delivery
+          framework with code reviews, sprint planning, and weekly client demos. That's where I learned to translate
+          technical complexity into business impact without losing the underlying rigor.
+        </p>
+        <p>
+          I'm now finishing an <strong>M.S. in Robotics &amp; AI at Arizona State University</strong> with a 3.89 GPA.
+          Beyond the core AI/ML coursework, I've worked on <strong>symbolic planning, reinforcement learning,
+          and digital twins for collaborative robots</strong> — wiring perception, kinematics, and learning into
+          systems that move actual hardware. Two research roles along the way: agentic AI for aerospace mission
+          analysis at the CoDe Lab, and autonomous blimp control at the AMASS Lab.
+        </p>
+        <p>
+          What I bring to a team is range. I move fluidly between <strong>Python data pipelines</strong>, <strong>cloud
+          infrastructure</strong>, <strong>LLM orchestration frameworks</strong>, and <strong>containerized
+          deployments</strong> — but the real value isn't tool fluency. It's knowing <em>when Kafka is overkill versus
+          when Kinesis won't scale</em>, or why a RAG pipeline fails without proper chunking.
+        </p>
+        <p>
+          On the <strong>ML side</strong>, that same instinct shows up around <em>when LoRA is enough versus when you
+          actually need a full fine-tune</em>, when a quick CNN beats reaching for a Vision Transformer, and how to
+          read a training curve before the metrics catch up to you. And on the <strong>robotics software</strong> side,
+          it's knowing <em>when symbolic planning gives you the guarantees RL won't</em>, when a digital twin saves a
+          week of hardware iteration, and where coordinate frames usually go wrong.
+        </p>
+        <p>
+          I'm looking for roles where I'm embedded with the problem, not isolated in a backend silo — building systems
+          that ship, learning the user's domain, and getting energized by messy, high-impact work.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-label">— Experience</span>
+        <h2 class="section-title">Where I've <em>worked.</em></h2>
+      </div>
+      <p class="section-desc">
+        A research role and a service role at ASU, a consulting analyst stint at Deloitte, a software engineer internship at an early-stage medical AI startup, and a business analyst internship before that.
+      </p>
+    </div>
+
+    <div class="timeline-wrap reveal">
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-date">Jan 2026 — May 2026</div>
+          <div class="tl-role">Graduate Research Assistant</div>
+          <div class="tl-company"><strong>Collective Design (CoDe) Lab</strong> · Arizona State University · Tempe, AZ</div>
+          <div class="tl-body">
+            <ul>
+              <li>Built an <strong>MCP-based agentic interface</strong> to NASA's TAT-C aerospace toolkit; reduced mission analysis from <span class="num">hours to under 5 minutes</span> across 42 test cases.</li>
+              <li>Ran systematic failure-mode analysis on a 42-query baseline (33.3% correctness): identified coordinate hallucination, tool ambiguity, and invalid satellite-instrument pairings as primary failure drivers.</li>
+              <li>Built a RAG-grounded location resolver with confidence-scored HITL gate (70% threshold); achieved <span class="num">100% correctness across 42 queries</span> and 67% auto-approval.</li>
+              <li>Restructured 20+ low-level Python API calls into 4 semantic tool wrappers — raising end-to-end planning success from <span class="num">23% to 77%</span>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">Sep 2025 — Dec 2025</div>
+          <div class="tl-role">Graduate Service Assistant</div>
+          <div class="tl-company"><strong>Yu Research Group / AMASS Lab</strong> · Arizona State University · Tempe, AZ</div>
+          <div class="tl-body">
+            <ul>
+              <li>Teaching support for <strong>RAS 501 (Applied Linear Algebra for Engineers)</strong> under Prof. Xi Yu: office hours, technical questions, grading assignments and exams.</li>
+              <li>Contributed to AMASS Lab research on <strong>autonomous blimp control systems</strong> using Python and ROS2 — lighter-than-air autonomous platforms.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">Sep 2023 — Jul 2024</div>
+          <div class="tl-role">Consulting Analyst — Strategy &amp; Analytics</div>
+          <div class="tl-company"><strong>Deloitte USI</strong> · Bengaluru, India</div>
+          <div class="tl-body">
+            <ul>
+              <li>Delivered AI-driven contract redlining POC for a <strong>Fortune 50 global life sciences client</strong>; POC outcome determined the firm's bid on the full production engagement.</li>
+              <li>Built end-to-end <strong>RAG pipeline over 1K+ manufacturing contracts</strong> with mixed structured, tabular, and unstructured content; benchmarked Pinecone vs Qdrant; tuned chunking and retrieval to preserve clause-level context.</li>
+              <li>Auto-resolved <span class="num">~80% of contract redlines</span>, leaving 20% edge cases for the client's legal team (vs. 100% manual review previously).</li>
+              <li>Built a natural-language-to-SQL system for an MVP inventory analytics product — cut analyst query time by <span class="num">60%</span>.</li>
+              <li>Presented technical tradeoffs (latency, accuracy, cost) to senior client stakeholders across US, UK, and India.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">Jun 2023 — Aug 2023</div>
+          <div class="tl-role">Software Engineer Intern</div>
+          <div class="tl-company"><strong>Eigengram</strong> · Gurugram, India</div>
+          <div class="tl-body">
+            <ul>
+              <li>Worked alongside two technical AI founders at an early-stage medical AI startup on data pipelines and ML model deployment.</li>
+              <li>Built Python ETL to parse and map <strong>10K+ heterogeneous gene expression records</strong>; cut manual processing by <span class="num">80%</span> and improved downstream data quality by <span class="num">25%</span>.</li>
+              <li>Deployed CNN medical imaging models and a BERT-powered clinical Q&amp;A chatbot through Django REST APIs on AWS EC2.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">Jan 2023 — Jun 2023</div>
+          <div class="tl-role">Business Analyst Intern</div>
+          <div class="tl-company"><strong>Upthrust Inc.</strong> · Gurugram, India</div>
+          <div class="tl-body">
+            <ul>
+              <li>Conducted in-depth market research using BI platforms to monitor industry trends, evaluate competitive positioning, and identify growth opportunities for data-driven decision-making.</li>
+              <li>Analyzed and modeled <strong>B2C and B2B prospect data</strong>, leveraging statistical techniques and forecasting methods to secure <span class="num">two new high-value clients</span> and improve lead conversion rates.</li>
+              <li>Collaborated with cross-functional teams to refine target audience profiles, develop inbound and outbound outreach strategies, and optimize campaign ROI.</li>
+              <li>Designed and implemented <strong>sales funnels and pipelines</strong> with senior leadership — streamlining lead qualification, reducing acquisition costs, and lifting revenue potential.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-label">— Projects</span>
+        <h2 class="section-title">Things I've <em>shipped.</em></h2>
+      </div>
+      <p class="section-desc">
+        Each project below moved a metric, not a slide. Filter by lane to see how the work clusters across AI, ML, and robotics.
+      </p>
+    </div>
+
+    <div class="filters reveal">
+      <button class="filter-btn active" data-filter="all">All <span class="count">12</span></button>
+      <button class="filter-btn" data-filter="ai">AI Engineering <span class="count">4</span></button>
+      <button class="filter-btn" data-filter="ml">ML Engineering <span class="count">3</span></button>
+      <button class="filter-btn" data-filter="data">Data / Infra <span class="count">2</span></button>
+      <button class="filter-btn" data-filter="robotics">Robotics <span class="count">3</span></button>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Project 1: TAT-C / MCP -->
+      <article class="project reveal" data-cat="ai">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid1" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#d6541f" stroke-opacity="0.08" stroke-width="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <rect width="400" height="225" fill="url(#grid1)"/>
+            <circle cx="200" cy="112" r="38" fill="#1a1612" opacity="0.85"/>
+            <circle cx="200" cy="112" r="38" fill="none" stroke="#d6541f" stroke-width="1" stroke-dasharray="2 3"/>
+            <ellipse cx="200" cy="112" rx="80" ry="32" fill="none" stroke="#d6541f" stroke-width="1.2"/>
+            <ellipse cx="200" cy="112" rx="110" ry="50" fill="none" stroke="#1a1612" stroke-width="0.8" stroke-opacity="0.4" stroke-dasharray="3 4"/>
+            <circle cx="280" cy="112" r="4" fill="#d6541f"/>
+            <circle cx="120" cy="112" r="3" fill="#d6541f"/>
+            <circle cx="200" cy="62" r="3" fill="#1a1612"/>
+            <rect x="20" y="20" width="120" height="22" rx="2" fill="#1a1612"/>
+            <text x="28" y="35" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7">› analyze_constellation()</text>
+            <rect x="20" y="48" width="100" height="14" rx="2" fill="none" stroke="#1a1612" stroke-opacity="0.3" stroke-width="0.8"/>
+            <text x="24" y="58" font-family="JetBrains Mono, monospace" font-size="7" fill="#7a6f63">tool_call · ok</text>
+            <rect x="270" y="180" width="110" height="32" rx="3" fill="#d6541f"/>
+            <text x="278" y="195" font-family="JetBrains Mono, monospace" font-size="8" fill="#fefcf7" opacity="0.9">PLANNING SUCCESS</text>
+            <text x="278" y="208" font-family="Fraunces, serif" font-size="14" font-weight="700" fill="#fefcf7">23% → 77%</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">AI Engineering · Agentic Systems</span>
+            <span class="project-date">2026</span>
+          </div>
+          <h3>TAT-C Agentic Mission Analysis</h3>
+          <p class="project-finding">
+            Cut aerospace mission analysis from <span class="metric">hours to under 5 minutes</span> across 42 test cases — and raised end-to-end planning success from <span class="metric">23% to 77%</span>.
+          </p>
+          <p class="project-detail">
+            Built an MCP-based agentic interface to NASA's TAT-C aerospace toolkit. Conducted systematic failure-mode analysis (coordinate hallucination 72%, tool ambiguity 48%, invalid satellite-instrument pairings 24%), restructured 20+ low-level API calls into 4 semantic tool wrappers, and shipped a RAG-grounded location resolver with confidence-scored HITL gating. Ablation showed in-context learning contributed +58pp and RAG +8pp. Deployed on Kubernetes with Prometheus and Grafana monitoring.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">MCP</span>
+            <span class="stack-chip">LangChain</span>
+            <span class="stack-chip">RAG</span>
+            <span class="stack-chip">Kubernetes</span>
+            <span class="stack-chip">Prometheus</span>
+            <span class="stack-chip">Grafana</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2: AURA Multi-Agent -->
+      <article class="project reveal" data-cat="ai">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <!-- Orchestrator node -->
+            <rect x="160" y="40" width="80" height="36" rx="4" fill="#1a1612"/>
+            <text x="200" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7" font-weight="600">orchestrator</text>
+            <!-- Worker nodes -->
+            <rect x="40" y="130" width="76" height="32" rx="4" fill="#fefcf7" stroke="#1a1612" stroke-width="1.5"/>
+            <text x="78" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#1a1612">worker_a</text>
+            <rect x="162" y="130" width="76" height="32" rx="4" fill="#fefcf7" stroke="#1a1612" stroke-width="1.5"/>
+            <text x="200" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#1a1612">worker_b</text>
+            <rect x="284" y="130" width="76" height="32" rx="4" fill="#fefcf7" stroke="#d6541f" stroke-width="1.5"/>
+            <text x="322" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#1a1612">worker_c</text>
+            <!-- Lines orchestrator -> workers -->
+            <line x1="200" y1="76" x2="78" y2="130" stroke="#1a1612" stroke-width="1" opacity="0.4"/>
+            <line x1="200" y1="76" x2="200" y2="130" stroke="#1a1612" stroke-width="1" opacity="0.4"/>
+            <line x1="200" y1="76" x2="322" y2="130" stroke="#d6541f" stroke-width="1.5"/>
+            <!-- ChromaDB memory ring -->
+            <circle cx="50" cy="60" r="16" fill="none" stroke="#d6541f" stroke-width="1.5"/>
+            <text x="50" y="63" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#d6541f">memory</text>
+            <line x1="66" y1="62" x2="160" y2="58" stroke="#d6541f" stroke-width="0.8" stroke-dasharray="2 2"/>
+            <!-- Metric -->
+            <rect x="20" y="190" width="170" height="22" rx="2" fill="#1a1612"/>
+            <text x="30" y="205" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7">TASK COMPLETION <tspan fill="#d6541f" font-weight="700">+40%</tspan></text>
+            <text x="205" y="205" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">ChromaDB · 90% recall</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">AI Engineering · Multi-Agent</span>
+            <span class="project-date">2025</span>
+          </div>
+          <h3>AURA — Autonomous Hierarchical Multi-Agent System</h3>
+          <p class="project-finding">
+            Orchestrator-worker agent architecture lifting task completion by <span class="metric">40%</span> and reducing debug time by <span class="metric">70%</span> through LangSmith trace-level instrumentation.
+          </p>
+          <p class="project-detail">
+            Designed in LangChain to address single-agent complexity and hallucination: a planner decomposes intent and worker agents execute tools, enabling separation of concerns and multi-step debugging. Shipped as a persistent self-healing service on AWS ECS with Fargate, containerized via Docker, automated through GitHub Actions CI/CD. Security-first credentials with AWS Secrets Manager and least-privilege IAM — no API keys in code or env files. ChromaDB-backed memory achieved 90% contextual query success.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">LangChain</span>
+            <span class="stack-chip">LangSmith</span>
+            <span class="stack-chip">ChromaDB</span>
+            <span class="stack-chip">AWS Fargate</span>
+            <span class="stack-chip">Docker</span>
+            <span class="stack-chip">GitHub Actions</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mrityunjay2627/AURA-Autonomous-Robotic-Universal-Agent" target="_blank" rel="noopener">View repo →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 4: LLaMA 2 + LoRA -->
+      <article class="project reveal" data-cat="ml">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <g transform="translate(30, 35)">
+              <rect x="0" y="0" width="120" height="22" rx="2" fill="#1a1612"/>
+              <text x="60" y="15" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7">Embedding + RoPE</text>
+              <rect x="0" y="32" width="120" height="22" rx="2" fill="none" stroke="#1a1612" stroke-width="1"/>
+              <text x="60" y="47" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1612">GMQ Attention</text>
+              <rect x="0" y="64" width="120" height="22" rx="2" fill="none" stroke="#1a1612" stroke-width="1"/>
+              <text x="60" y="79" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1612">KV Cache</text>
+              <rect x="0" y="96" width="120" height="22" rx="2" fill="none" stroke="#1a1612" stroke-width="1"/>
+              <text x="60" y="111" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1612">SwiGLU FFN</text>
+              <rect x="0" y="128" width="120" height="22" rx="2" fill="#d6541f"/>
+              <text x="60" y="143" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7" font-weight="600">+ LoRA r=4</text>
+            </g>
+            <g transform="translate(190, 50)">
+              <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">SPEEDUP</text>
+              <text x="0" y="22" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#1a1612">+20%</text>
+              <text x="0" y="38" font-family="Inter, sans-serif" font-size="9" fill="#7a6f63">CPU inference vs baseline</text>
+              <text x="0" y="68" font-family="JetBrains Mono, monospace" font-size="8" fill="#d6541f">BLEU SCORE</text>
+              <text x="0" y="90" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#d6541f">18.68</text>
+              <text x="0" y="106" font-family="Inter, sans-serif" font-size="9" fill="#7a6f63">Czech-English · beat OPT-350M</text>
+              <text x="0" y="136" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">FROZEN WEIGHTS</text>
+              <text x="0" y="158" font-family="Fraunces, serif" font-size="20" font-weight="700" fill="#1a1612">99%</text>
+            </g>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">ML Engineering · Fine-tuning</span>
+            <span class="project-date">2025</span>
+          </div>
+          <h3>LLaMA 2 from Scratch + LoRA Fine-tuning</h3>
+          <p class="project-finding">
+            Hit <span class="metric">18.68 BLEU on Czech-English translation</span> — beating OPT-350M and GPT-7B baselines while freezing 99% of weights via LoRA.
+          </p>
+          <p class="project-detail">
+            Implemented LLaMA 2 (7B) from scratch in PyTorch with Grouped Multi-Query Attention, KV caching, RoPE, and SwiGLU — achieving a 20% CPU inference speedup over baseline. Added rank-4 LoRA adapters for parameter-efficient fine-tuning. Built a sentence-transformer RAG layer with cosine retrieval over chunked corpora for grounding on technical Q&amp;A.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">PyTorch</span>
+            <span class="stack-chip">LoRA</span>
+            <span class="stack-chip">Transformers</span>
+            <span class="stack-chip">RAG</span>
+            <span class="stack-chip">SentenceTransformers</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mrityunjay2627/Llama-2-Optimization-From-Scratch" target="_blank" rel="noopener">View repo →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 5: LLM from Scratch -->
+      <article class="project reveal" data-cat="ml">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <!-- Token sliding window -->
+            <g transform="translate(30, 40)">
+              <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">SLIDING WINDOW</text>
+              <g transform="translate(0, 12)">
+                <rect x="0" y="0" width="22" height="22" rx="2" fill="#1a1612"/>
+                <text x="11" y="15" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7">t1</text>
+                <rect x="26" y="0" width="22" height="22" rx="2" fill="#1a1612"/>
+                <text x="37" y="15" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7">t2</text>
+                <rect x="52" y="0" width="22" height="22" rx="2" fill="#1a1612"/>
+                <text x="63" y="15" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7">t3</text>
+                <rect x="78" y="0" width="22" height="22" rx="2" fill="#d6541f"/>
+                <text x="89" y="15" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7">t4</text>
+                <text x="108" y="15" font-family="JetBrains Mono, monospace" font-size="11" fill="#1a1612">→ ?</text>
+              </g>
+            </g>
+            <!-- transformer block stack -->
+            <g transform="translate(30, 110)">
+              <rect x="0" y="0" width="160" height="18" rx="2" fill="none" stroke="#1a1612" stroke-width="1"/>
+              <text x="80" y="13" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#1a1612">Transformer Block × N</text>
+              <rect x="0" y="22" width="160" height="18" rx="2" fill="none" stroke="#1a1612" stroke-width="1"/>
+              <text x="80" y="35" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#1a1612">Multi-Head Attention</text>
+              <rect x="0" y="44" width="160" height="18" rx="2" fill="none" stroke="#1a1612" stroke-width="1"/>
+              <text x="80" y="57" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#1a1612">Layer Norm + FFN</text>
+            </g>
+            <!-- Right side: metrics -->
+            <g transform="translate(220, 50)">
+              <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="8" fill="#d6541f">TASKS</text>
+              <text x="0" y="22" font-family="Fraunces, serif" font-size="14" font-weight="600" fill="#1a1612">Spam classify</text>
+              <text x="0" y="42" font-family="Fraunces, serif" font-size="14" font-weight="600" fill="#1a1612">Instruction-tune</text>
+              <text x="0" y="62" font-family="Fraunces, serif" font-size="14" font-weight="600" fill="#1a1612">Adapt GPT-2 wts.</text>
+              <text x="0" y="92" font-family="JetBrains Mono, monospace" font-size="8" fill="#d6541f">SAMPLING</text>
+              <text x="0" y="110" font-family="Inter, sans-serif" font-size="11" fill="#1a1612">temperature + top-k</text>
+              <text x="0" y="138" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">eval: CE · perplexity · acc</text>
+            </g>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">ML Engineering · Transformers</span>
+            <span class="project-date">2025</span>
+          </div>
+          <h3>LLM from Scratch — Transformer Implementation &amp; Fine-Tuning</h3>
+          <p class="project-finding">
+            GPT-like model built end-to-end in PyTorch — then adapted to spam classification and instruction-following with pretrained GPT-2 weights.
+          </p>
+          <p class="project-detail">
+            Implemented token embeddings, multi-head attention, position encodings, and layer normalization from scratch. Integrated a sliding-window data loader for next-token prediction and partial freezing for efficient fine-tuning. Demonstrated temperature scaling and top-k sampling; evaluated with cross-entropy, perplexity, and accuracy. Fine-tuned for two downstream objectives (spam detection and instruction-generation) showing how to adapt pretrained weights to new tasks.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">PyTorch</span>
+            <span class="stack-chip">Transformers</span>
+            <span class="stack-chip">GPT-2</span>
+            <span class="stack-chip">Fine-tuning</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mrityunjay2627/LLM-From-Scratch" target="_blank" rel="noopener">View repo →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 6: Vision Transformers -->
+      <article class="project reveal" data-cat="ml">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <g transform="translate(35, 35)">
+              <g stroke="#1a1612" stroke-width="0.6" fill="none">
+                <rect x="0" y="0" width="120" height="120"/>
+                <line x1="40" y1="0" x2="40" y2="120"/>
+                <line x1="80" y1="0" x2="80" y2="120"/>
+                <line x1="0" y1="40" x2="120" y2="40"/>
+                <line x1="0" y1="80" x2="120" y2="80"/>
+              </g>
+              <rect x="40" y="0" width="40" height="40" fill="#d6541f" opacity="0.2"/>
+              <rect x="0" y="40" width="40" height="40" fill="#d6541f" opacity="0.35"/>
+              <rect x="80" y="80" width="40" height="40" fill="#d6541f" opacity="0.5"/>
+              <text x="60" y="138" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">16 patches</text>
+            </g>
+            <g stroke="#d6541f" stroke-width="0.6" fill="none" opacity="0.5">
+              <path d="M 160 50 Q 200 80 240 50"/>
+              <path d="M 170 100 Q 210 120 250 100"/>
+              <path d="M 180 150 Q 220 130 260 150"/>
+            </g>
+            <g transform="translate(260, 50)">
+              <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">BENCHMARKED</text>
+              <text x="0" y="20" font-family="Inter, sans-serif" font-size="10" fill="#1a1612">Custom ViT</text>
+              <text x="0" y="36" font-family="Inter, sans-serif" font-size="10" fill="#1a1612">vs. ResNet-50 / 152</text>
+              <text x="0" y="52" font-family="Inter, sans-serif" font-size="10" fill="#1a1612">vs. EfficientNet-V2</text>
+              <text x="0" y="68" font-family="Inter, sans-serif" font-size="10" fill="#1a1612">vs. Pretrained ViT</text>
+              <line x1="0" y1="80" x2="120" y2="80" stroke="#1a1612" stroke-width="0.5" opacity="0.3"/>
+              <text x="0" y="100" font-family="JetBrains Mono, monospace" font-size="8" fill="#d6541f">CIFAR-10 · 32 → 224</text>
+            </g>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">ML Engineering · Computer Vision</span>
+            <span class="project-date">2025</span>
+          </div>
+          <h3>ViT vs. CNN Robustness on Low-Res Data</h3>
+          <p class="project-finding">
+            Built a Vision Transformer from scratch in PyTorch and benchmarked it against four pretrained baselines on upscaled CIFAR-10.
+          </p>
+          <p class="project-detail">
+            Implemented patch embeddings, multi-head self-attention, positional embeddings, and full transformer encoder blocks. Compared the custom ViT to ResNet-50/152, EfficientNet-V2-S/L, and a pretrained ViT to analyze architectural differences in robustness and generalization. Designed the preprocessing pipeline that upscaled 32×32 CIFAR-10 images to 224×224 to study information-constrained performance.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">PyTorch</span>
+            <span class="stack-chip">ViT</span>
+            <span class="stack-chip">CNN</span>
+            <span class="stack-chip">Transfer Learning</span>
+            <span class="stack-chip">Computer Vision</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mrityunjay2627/Vision-Transformers-Project" target="_blank" rel="noopener">View repo →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 7: Distributed Transportation Pipeline -->
+      <article class="project reveal" data-cat="data">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <g stroke="#1a1612" stroke-width="0.8" stroke-opacity="0.35" fill="none">
+              <line x1="80" y1="60" x2="160" y2="100"/>
+              <line x1="80" y1="60" x2="120" y2="160"/>
+              <line x1="160" y1="100" x2="240" y2="80"/>
+              <line x1="160" y1="100" x2="200" y2="170"/>
+              <line x1="240" y1="80" x2="320" y2="120"/>
+              <line x1="200" y1="170" x2="280" y2="180"/>
+              <line x1="320" y1="120" x2="280" y2="180"/>
+              <line x1="120" y1="160" x2="200" y2="170"/>
+            </g>
+            <g stroke="#d6541f" stroke-width="2" fill="none">
+              <line x1="80" y1="60" x2="160" y2="100"/>
+              <line x1="160" y1="100" x2="240" y2="80"/>
+              <line x1="240" y1="80" x2="320" y2="120"/>
+            </g>
+            <circle cx="80" cy="60" r="6" fill="#d6541f"/>
+            <circle cx="160" cy="100" r="9" fill="#1a1612"/>
+            <circle cx="240" cy="80" r="7" fill="#1a1612"/>
+            <circle cx="120" cy="160" r="5" fill="#1a1612" opacity="0.5"/>
+            <circle cx="200" cy="170" r="6" fill="#1a1612" opacity="0.6"/>
+            <circle cx="320" cy="120" r="8" fill="#d6541f"/>
+            <circle cx="280" cy="180" r="5" fill="#1a1612" opacity="0.5"/>
+            <text x="172" y="98" font-family="JetBrains Mono, monospace" font-size="7" fill="#fefcf7">hub</text>
+            <text x="20" y="25" font-family="JetBrains Mono, monospace" font-size="9" fill="#7a6f63">42 zones · 1,530 trips · PageRank + BFS</text>
+            <rect x="20" y="185" width="170" height="28" rx="2" fill="#1a1612"/>
+            <text x="30" y="203" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7">DEPLOYMENT 90% → <tspan fill="#d6541f" font-weight="700">100%</tspan></text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">Data / Infra · Graph + Streaming</span>
+            <span class="project-date">2025</span>
+          </div>
+          <h3>Distributed Transportation Analytics Pipeline</h3>
+          <p class="project-finding">
+            Migrated a single-container pipeline to Kubernetes microservices and lifted deployment success from <span class="metric">90% to 100%</span> by fixing a hardcoded-credential bug via ConfigMap injection.
+          </p>
+          <p class="project-detail">
+            Real-time graph processing pipeline ingesting 1,530 NYC taxi trip events across 42 transportation zones via Kafka into Neo4j, modeling the city as a directed pickup/dropoff network. Ran PageRank to identify high-traffic hubs and BFS for shortest-path routing using the Neo4j Graph Data Science library. Identical analytical results across monolithic Docker and distributed Kubernetes deployments validated correctness. Architecture transferable to logistics, fleet routing, and supply-chain network analysis.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">Kubernetes</span>
+            <span class="stack-chip">Kafka</span>
+            <span class="stack-chip">Neo4j</span>
+            <span class="stack-chip">Docker</span>
+            <span class="stack-chip">Helm</span>
+            <span class="stack-chip">Python</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 8: Sentinel-Robot -->
+      <article class="project reveal" data-cat="data">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <!-- Pipeline boxes -->
+            <g font-family="JetBrains Mono, monospace" font-size="8">
+              <rect x="20" y="40" width="68" height="32" rx="3" fill="#1a1612"/>
+              <text x="54" y="52" text-anchor="middle" fill="#d6541f">AMR</text>
+              <text x="54" y="64" text-anchor="middle" fill="#fefcf7">telemetry</text>
+              <rect x="106" y="40" width="68" height="32" rx="3" fill="#fefcf7" stroke="#1a1612" stroke-width="1.2"/>
+              <text x="140" y="52" text-anchor="middle" fill="#1a1612">Kinesis</text>
+              <text x="140" y="64" text-anchor="middle" fill="#7a6f63">Firehose</text>
+              <rect x="192" y="40" width="68" height="32" rx="3" fill="#fefcf7" stroke="#1a1612" stroke-width="1.2"/>
+              <text x="226" y="52" text-anchor="middle" fill="#1a1612">S3</text>
+              <text x="226" y="64" text-anchor="middle" fill="#7a6f63">data lake</text>
+              <rect x="278" y="40" width="68" height="32" rx="3" fill="#fefcf7" stroke="#1a1612" stroke-width="1.2"/>
+              <text x="312" y="52" text-anchor="middle" fill="#1a1612">dbt</text>
+              <text x="312" y="64" text-anchor="middle" fill="#7a6f63">star schema</text>
+              <!-- arrows -->
+              <line x1="88" y1="56" x2="106" y2="56" stroke="#1a1612" stroke-width="0.8"/>
+              <line x1="174" y1="56" x2="192" y2="56" stroke="#1a1612" stroke-width="0.8"/>
+              <line x1="260" y1="56" x2="278" y2="56" stroke="#1a1612" stroke-width="0.8"/>
+            </g>
+            <!-- Airflow row -->
+            <g transform="translate(20, 100)">
+              <rect x="0" y="0" width="326" height="28" rx="3" fill="#d6541f" opacity="0.12" stroke="#d6541f" stroke-width="1"/>
+              <text x="163" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#d6541f">Airflow DAGs · Glue Crawlers · dbt runs</text>
+            </g>
+            <!-- Terraform + GH actions -->
+            <g transform="translate(20, 145)">
+              <rect x="0" y="0" width="156" height="28" rx="3" fill="#fefcf7" stroke="#1a1612" stroke-width="1"/>
+              <text x="78" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1612">Terraform IaC</text>
+              <rect x="170" y="0" width="156" height="28" rx="3" fill="#fefcf7" stroke="#1a1612" stroke-width="1"/>
+              <text x="248" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1612">GH Actions CI/CD</text>
+            </g>
+            <!-- Metric -->
+            <rect x="20" y="185" width="326" height="22" rx="2" fill="#1a1612"/>
+            <text x="32" y="200" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7">QUERY LATENCY 3.2s → <tspan fill="#d6541f" font-weight="700">0.7s</tspan> · 1.5M+ events/day · 99.9% reliability</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">Data / Infra · DataOps</span>
+            <span class="project-date">2025</span>
+          </div>
+          <h3>Sentinel-Robot — AMR Fleet DataOps Pipeline</h3>
+          <p class="project-finding">
+            Serverless pipeline processing <span class="metric">1.5M+ daily telemetry events</span> at 99.9% reliability — cutting Athena query latency from <span class="metric">3.2s to 0.7s</span> on aggregated marts.
+          </p>
+          <p class="project-detail">
+            Built DataOps pipeline transforming raw AMR telemetry (motor temperature, vibration, battery, position) into aggregated health reports — replacing reactive break-fix cycles with a validated single source of truth for warehouse fleet operators. Full stack as IaC: Kinesis Firehose → S3 data lake → dbt staging-to-marts with star-schema fact tables → MWAA-orchestrated Airflow DAGs chaining Glue Crawlers and dbt runs. Terraform + GitHub Actions cut code-to-production from 10–15 min manual to ~2 min automated. Window functions, custom dbt tests, and partitioned Athena queries on pre-aggregated Parquet marts.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">AWS</span>
+            <span class="stack-chip">Kinesis</span>
+            <span class="stack-chip">dbt</span>
+            <span class="stack-chip">Airflow</span>
+            <span class="stack-chip">Terraform</span>
+            <span class="stack-chip">SQL</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mrityunjay2627/Sentinel-Robot" target="_blank" rel="noopener">View repo →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 9: Azure Big Data Pipeline -->
+      <article class="project reveal" data-cat="data">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <!-- Medallion: bronze, silver, gold layers -->
+            <g transform="translate(40, 50)">
+              <rect x="0" y="0" width="90" height="110" rx="4" fill="#1a1612" opacity="0.85"/>
+              <text x="45" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#d6541f" font-weight="700">BRONZE</text>
+              <text x="45" y="50" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fefcf7">raw</text>
+              <text x="45" y="65" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#fefcf7" opacity="0.7">CSV · GitHub</text>
+              <text x="45" y="78" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#fefcf7" opacity="0.7">MySQL · Mongo</text>
+
+              <rect x="115" y="0" width="90" height="110" rx="4" fill="#1a1612" opacity="0.6"/>
+              <text x="160" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#d6541f" font-weight="700">SILVER</text>
+              <text x="160" y="50" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fefcf7">cleaned</text>
+              <text x="160" y="65" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#fefcf7" opacity="0.7">PySpark</text>
+              <text x="160" y="78" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#fefcf7" opacity="0.7">Databricks</text>
+
+              <rect x="230" y="0" width="90" height="110" rx="4" fill="#d6541f"/>
+              <text x="275" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7" font-weight="700">GOLD</text>
+              <text x="275" y="50" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#fefcf7">serving</text>
+              <text x="275" y="65" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#fefcf7" opacity="0.8">Synapse</text>
+              <text x="275" y="78" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#fefcf7" opacity="0.8">serverless SQL</text>
+              <!-- arrows -->
+              <line x1="90" y1="55" x2="115" y2="55" stroke="#1a1612" stroke-width="1"/>
+              <line x1="205" y1="55" x2="230" y2="55" stroke="#1a1612" stroke-width="1"/>
+            </g>
+            <text x="20" y="195" font-family="JetBrains Mono, monospace" font-size="9" fill="#7a6f63">Azure Data Factory · AD app reg · ADLS</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">Data / Infra · Cloud ETL</span>
+            <span class="project-date">2025</span>
+          </div>
+          <h3>Azure Big Data Pipeline (Medallion Architecture)</h3>
+          <p class="project-finding">
+            End-to-end e-commerce data pipeline on Azure — Bronze → Silver → Gold — with secure, serverless serving via Synapse.
+          </p>
+          <p class="project-detail">
+            Implemented the Medallion Architecture to ingest, transform, and serve large-scale e-commerce data. Automated multi-source ingestion (CSV, GitHub, MySQL, MongoDB) into Azure Data Lake Storage. Built PySpark workflows in Databricks to clean, enrich, and unify raw datasets. Secured with Azure AD app registration; served queries via Synapse serverless SQL pools for cost-efficient downstream analytics.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">Azure</span>
+            <span class="stack-chip">Databricks</span>
+            <span class="stack-chip">PySpark</span>
+            <span class="stack-chip">Synapse</span>
+            <span class="stack-chip">ADF</span>
+            <span class="stack-chip">ETL</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mrityunjay2627/Azure-Ecommerce-Big-Data-Engineering-Project" target="_blank" rel="noopener">View repo →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 10: Media Conversion Microservices -->
+      <article class="project reveal" data-cat="ai">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <!-- Upload service -->
+            <g transform="translate(25, 60)">
+              <rect x="0" y="0" width="74" height="36" rx="3" fill="#1a1612"/>
+              <text x="37" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#fefcf7">upload</text>
+            </g>
+            <!-- RabbitMQ queue -->
+            <g transform="translate(125, 60)">
+              <rect x="0" y="0" width="74" height="36" rx="3" fill="#d6541f"/>
+              <text x="37" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#fefcf7">RabbitMQ</text>
+              <text x="37" y="29" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#fefcf7" opacity="0.8">queue</text>
+            </g>
+            <!-- Convert worker -->
+            <g transform="translate(225, 25)">
+              <rect x="0" y="0" width="74" height="36" rx="3" fill="#fefcf7" stroke="#1a1612" stroke-width="1.2"/>
+              <text x="37" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#1a1612">convert</text>
+            </g>
+            <!-- Notify worker -->
+            <g transform="translate(225, 90)">
+              <rect x="0" y="0" width="74" height="36" rx="3" fill="#fefcf7" stroke="#1a1612" stroke-width="1.2"/>
+              <text x="37" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#1a1612">notify</text>
+            </g>
+            <!-- JWT Auth -->
+            <g transform="translate(325, 60)">
+              <rect x="0" y="0" width="60" height="36" rx="3" fill="#fefcf7" stroke="#1a1612" stroke-width="1.2"/>
+              <text x="30" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#d6541f">JWT</text>
+              <text x="30" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#7a6f63">auth</text>
+            </g>
+            <!-- arrows -->
+            <line x1="99" y1="78" x2="125" y2="78" stroke="#1a1612" stroke-width="0.8" marker-end="url(#arr3)"/>
+            <line x1="199" y1="70" x2="225" y2="50" stroke="#1a1612" stroke-width="0.8" marker-end="url(#arr3)"/>
+            <line x1="199" y1="85" x2="225" y2="105" stroke="#1a1612" stroke-width="0.8" marker-end="url(#arr3)"/>
+            <defs>
+              <marker id="arr3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L5,3 L0,6 z" fill="#1a1612"/>
+              </marker>
+            </defs>
+            <!-- Bottom label -->
+            <text x="200" y="180" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#7a6f63">K8s · MySQL · MongoDB · Docker</text>
+            <text x="200" y="200" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#d6541f">async · decoupled · scalable</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">AI / Infra · Microservices</span>
+            <span class="project-date">2025</span>
+          </div>
+          <h3>Scalable Media Conversion &amp; Notification Microservices</h3>
+          <p class="project-finding">
+            Containerized microservices architecture with async messaging — decoupling file uploads from CPU-intensive conversion for independent scaling.
+          </p>
+          <p class="project-detail">
+            Architected a containerized solution using Docker and Kubernetes with modular, independently scalable components. JWT-based authentication backed by a MySQL database and centralized auth service for user management. RabbitMQ for async messaging, decoupling file upload from CPU-intensive video-to-MP3 conversion and notification workflows. Deployed end-to-end on Kubernetes with persistent storage and stateful services for high availability and streamlined DevOps.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">Docker</span>
+            <span class="stack-chip">Kubernetes</span>
+            <span class="stack-chip">RabbitMQ</span>
+            <span class="stack-chip">MySQL</span>
+            <span class="stack-chip">JWT</span>
+            <span class="stack-chip">Microservices</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mrityunjay2627/Python-MP4-MP3-Converter-Microservices-App" target="_blank" rel="noopener">View repo →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 11: Digital Twin Robotics -->
+      <article class="project reveal" data-cat="robotics">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <g transform="translate(140, 30)">
+              <rect x="-20" y="155" width="60" height="14" rx="2" fill="#1a1612"/>
+              <circle cx="10" cy="155" r="8" fill="#d6541f"/>
+              <line x1="10" y1="155" x2="50" y2="90" stroke="#1a1612" stroke-width="6" stroke-linecap="round"/>
+              <circle cx="50" cy="90" r="7" fill="#d6541f"/>
+              <line x1="50" y1="90" x2="110" y2="55" stroke="#1a1612" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="110" cy="55" r="6" fill="#d6541f"/>
+              <line x1="110" y1="55" x2="135" y2="40" stroke="#1a1612" stroke-width="4" stroke-linecap="round"/>
+              <rect x="130" y="32" width="14" height="14" rx="1" fill="#1a1612"/>
+              <g transform="translate(160, 100)">
+                <rect x="0" y="0" width="36" height="36" fill="#1a1612"/>
+                <rect x="6" y="6" width="6" height="6" fill="#fefcf7"/>
+                <rect x="18" y="6" width="6" height="6" fill="#fefcf7"/>
+                <rect x="12" y="12" width="6" height="6" fill="#fefcf7"/>
+                <rect x="24" y="18" width="6" height="6" fill="#fefcf7"/>
+                <rect x="6" y="24" width="6" height="6" fill="#fefcf7"/>
+                <rect x="18" y="24" width="6" height="6" fill="#fefcf7"/>
+              </g>
+              <text x="155" y="155" font-family="JetBrains Mono, monospace" font-size="7" fill="#7a6f63">ArUco target</text>
+            </g>
+            <text x="30" y="35" font-family="JetBrains Mono, monospace" font-size="9" fill="#d6541f">6-DOF · MyCobot Pro 600</text>
+            <text x="30" y="50" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">DH params → Simscape twin</text>
+            <text x="30" y="195" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">Python ↔ TCP/IP ↔ robot OS</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">Robotics · Digital Twin + Vision</span>
+            <span class="project-date">2024</span>
+          </div>
+          <h3>Digital Twin — 6-DOF Collaborative Robot</h3>
+          <p class="project-finding">
+            Built the MATLAB digital twin and computer-vision workstream for an industrial arm — validated sim-to-real end-effector positioning over Python TCP/IP control.
+          </p>
+          <p class="project-detail">
+            Owned the CV and digital-twin workstream on a cross-disciplinary team (with electrical and mechanical engineers) for the MyCobot Pro 600 industrial arm. Wrote MATLAB control and kinematics code including DH-parameter forward kinematics for the Simscape multibody twin; validated planned trajectories against joint limits and workspace before sending to hardware. Implemented OpenCV ArUco marker detection for vision-guided motion planning.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">MATLAB</span>
+            <span class="stack-chip">Simscape</span>
+            <span class="stack-chip">Python</span>
+            <span class="stack-chip">OpenCV</span>
+            <span class="stack-chip">ArUco</span>
+            <span class="stack-chip">TCP/IP</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 12: Autonomous Car with DRL -->
+      <article class="project reveal" data-cat="robotics">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <!-- Track / map area -->
+            <rect x="30" y="40" width="220" height="140" rx="4" fill="#fefcf7" stroke="#1a1612" stroke-width="1"/>
+            <!-- Sand obstacle -->
+            <path d="M 80 80 Q 120 70 150 100 Q 170 130 120 140 Q 70 130 80 80" fill="#d6541f" opacity="0.2" stroke="#d6541f" stroke-width="1" stroke-dasharray="3 2"/>
+            <!-- Car -->
+            <g transform="translate(180, 130) rotate(-25)">
+              <rect x="-12" y="-7" width="24" height="14" rx="2" fill="#1a1612"/>
+              <!-- Sensors -->
+              <line x1="12" y1="-3" x2="32" y2="-15" stroke="#d6541f" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="12" y1="0" x2="38" y2="0" stroke="#d6541f" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="12" y1="3" x2="32" y2="15" stroke="#d6541f" stroke-width="1" stroke-dasharray="2 2"/>
+            </g>
+            <!-- Goal -->
+            <circle cx="220" cy="60" r="8" fill="none" stroke="#d6541f" stroke-width="1.5"/>
+            <circle cx="220" cy="60" r="3" fill="#d6541f"/>
+            <text x="232" y="64" font-family="JetBrains Mono, monospace" font-size="7" fill="#7a6f63">goal</text>
+            <!-- Right side: DQN architecture -->
+            <g transform="translate(280, 60)">
+              <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="8" fill="#d6541f">DQN</text>
+              <text x="0" y="20" font-family="Inter, sans-serif" font-size="9" fill="#1a1612">3 sensors</text>
+              <text x="0" y="35" font-family="Inter, sans-serif" font-size="9" fill="#1a1612">+ orientation</text>
+              <text x="0" y="55" font-family="Inter, sans-serif" font-size="9" fill="#1a1612">↓</text>
+              <text x="0" y="75" font-family="Inter, sans-serif" font-size="9" fill="#1a1612">Q-values</text>
+              <text x="0" y="100" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">replay buffer</text>
+              <text x="0" y="115" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">+ reward shape</text>
+            </g>
+            <text x="30" y="200" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">PyTorch · Kivy sim · interactive obstacles</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">Robotics · Reinforcement Learning</span>
+            <span class="project-date">2025</span>
+          </div>
+          <h3>Autonomous Car Navigation with Deep RL</h3>
+          <p class="project-finding">
+            Deep Q-Network trained to navigate a custom Kivy simulation with real-time user-drawn obstacles — using just three proximity sensors and orientation as input.
+          </p>
+          <p class="project-detail">
+            Developed an interactive self-driving car simulation in Python using Kivy with continuous environment updates and real-time obstacle drawing. Implemented a Deep Q-Network in PyTorch with sensor-based inputs and custom reward shaping. Leveraged an experience replay buffer for stable, efficient learning. Optimized performance by penalizing sand/edge collisions and encouraging goal-focused navigation, enabling autonomous adaptation to changing targets.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">PyTorch</span>
+            <span class="stack-chip">Reinforcement Learning</span>
+            <span class="stack-chip">DQN</span>
+            <span class="stack-chip">Kivy</span>
+            <span class="stack-chip">ROS</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/mrityunjay2627/Reinforcement-Learning" target="_blank" rel="noopener">View repo →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 13: Symbolic Planning + RL for Service Robot -->
+      <article class="project reveal" data-cat="robotics">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="225" fill="#f9f5ec"/>
+            <!-- Left: PDDL plan tree -->
+            <g transform="translate(30, 30)">
+              <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="8" fill="#d6541f">PDDL · Fast Downward</text>
+              <!-- root -->
+              <rect x="25" y="14" width="90" height="22" rx="3" fill="#1a1612"/>
+              <text x="70" y="29" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#fefcf7">(deliver food)</text>
+              <!-- children -->
+              <line x1="50" y1="36" x2="20" y2="56" stroke="#1a1612" stroke-width="0.8" opacity="0.4"/>
+              <line x1="70" y1="36" x2="70" y2="56" stroke="#1a1612" stroke-width="0.8" opacity="0.4"/>
+              <line x1="90" y1="36" x2="120" y2="56" stroke="#1a1612" stroke-width="0.8" opacity="0.4"/>
+              <rect x="-5" y="56" width="50" height="20" rx="2" fill="#fefcf7" stroke="#1a1612" stroke-width="1"/>
+              <text x="20" y="69" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#1a1612">move</text>
+              <rect x="50" y="56" width="50" height="20" rx="2" fill="#fefcf7" stroke="#1a1612" stroke-width="1"/>
+              <text x="75" y="69" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#1a1612">pick</text>
+              <rect x="105" y="56" width="50" height="20" rx="2" fill="#fefcf7" stroke="#d6541f" stroke-width="1.5"/>
+              <text x="130" y="69" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#1a1612">place</text>
+            </g>
+            <!-- Middle arrow -->
+            <g transform="translate(190, 95)">
+              <line x1="0" y1="0" x2="22" y2="0" stroke="#d6541f" stroke-width="1.5" marker-end="url(#arr4)"/>
+              <text x="11" y="-6" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#d6541f">refine</text>
+            </g>
+            <defs>
+              <marker id="arr4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L5,3 L0,6 z" fill="#d6541f"/>
+              </marker>
+            </defs>
+            <!-- Right: Q-learning reward curve -->
+            <g transform="translate(225, 35)">
+              <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="8" fill="#d6541f">Q-LEARNING · 500 eps</text>
+              <!-- axes -->
+              <line x1="0" y1="80" x2="140" y2="80" stroke="#1a1612" stroke-width="1"/>
+              <line x1="0" y1="10" x2="0" y2="80" stroke="#1a1612" stroke-width="1"/>
+              <!-- learning curve -->
+              <path d="M 2 78 Q 25 75 40 60 Q 60 35 90 22 Q 115 17 138 15"
+                    stroke="#d6541f" stroke-width="2" fill="none"/>
+              <!-- noisy dots -->
+              <circle cx="15" cy="76" r="1.2" fill="#1a1612" opacity="0.5"/>
+              <circle cx="32" cy="68" r="1.2" fill="#1a1612" opacity="0.5"/>
+              <circle cx="55" cy="48" r="1.2" fill="#1a1612" opacity="0.5"/>
+              <circle cx="78" cy="32" r="1.2" fill="#1a1612" opacity="0.5"/>
+              <circle cx="105" cy="22" r="1.2" fill="#1a1612" opacity="0.5"/>
+              <text x="-2" y="90" font-family="JetBrains Mono, monospace" font-size="6" fill="#7a6f63">0</text>
+              <text x="130" y="90" font-family="JetBrains Mono, monospace" font-size="6" fill="#7a6f63">500</text>
+              <text x="60" y="96" font-family="JetBrains Mono, monospace" font-size="7" fill="#7a6f63">episodes</text>
+            </g>
+            <!-- Bottom: environments -->
+            <text x="30" y="185" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">env_1: book sorting · subject + size</text>
+            <text x="30" y="200" font-family="JetBrains Mono, monospace" font-size="8" fill="#7a6f63">env_2: food delivery · type + portion</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">Robotics · Symbolic Planning + RL</span>
+            <span class="project-date">2024</span>
+          </div>
+          <h3>Symbolic Planning &amp; Learning for a Service Robot</h3>
+          <p class="project-finding">
+            Pick-and-place service robot integrating <span class="metric">PDDL symbolic planning</span> with from-scratch <span class="metric">Q-learning</span> across two environments — book sorting and food delivery.
+          </p>
+          <p class="project-detail">
+            Built the full stack for two task environments (book sorting by subject and size; food delivery by type and portion), combining symbolic planning with reinforcement-learned action selection. Wrote PDDL domain files for pick / place / move actions and implemented plan refinement converting Fast Downward symbolic plans into executable robot action sequences with graph-search path planning. Implemented Q-learning from scratch — update rule, decaying ε-greedy exploration, cumulative reward tracking — trained 500 episodes per environment and validated convergence through episode-vs-reward plots.
+          </p>
+          <div class="project-stack">
+            <span class="stack-chip">Python</span>
+            <span class="stack-chip">ROS</span>
+            <span class="stack-chip">Gazebo</span>
+            <span class="stack-chip">PDDL</span>
+            <span class="stack-chip">Fast Downward</span>
+            <span class="stack-chip">Q-Learning</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-label">— Skills</span>
+        <h2 class="section-title">The <em>toolkit.</em></h2>
+      </div>
+      <p class="section-desc">
+        Grouped by what they actually do, not vendor logos. The dark tags are the ones I reach for most often.
+      </p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <h4>— AI / ML</h4>
+        <div class="skill-tags">
+          <span class="skill-tag featured">PyTorch</span>
+          <span class="skill-tag featured">LangChain</span>
+          <span class="skill-tag featured">RAG</span>
+          <span class="skill-tag featured">MCP</span>
+          <span class="skill-tag featured">LoRA / QLoRA</span>
+          <span class="skill-tag">Vector DBs</span>
+          <span class="skill-tag">LangSmith</span>
+          <span class="skill-tag">Prompt Engineering</span>
+          <span class="skill-tag">A/B Testing</span>
+          <span class="skill-tag">Transformers</span>
+          <span class="skill-tag">CNN / ViT</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <h4>— Robotics Software</h4>
+        <div class="skill-tags">
+          <span class="skill-tag featured">ROS2</span>
+          <span class="skill-tag featured">Python</span>
+          <span class="skill-tag featured">OpenCV</span>
+          <span class="skill-tag featured">Reinforcement Learning</span>
+          <span class="skill-tag">MATLAB / Simulink</span>
+          <span class="skill-tag">Simscape</span>
+          <span class="skill-tag">DH Kinematics</span>
+          <span class="skill-tag">ArUco / Vision</span>
+          <span class="skill-tag">TCP/IP control</span>
+          <span class="skill-tag">DQN</span>
+          <span class="skill-tag">Digital Twin</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <h4>— Hardware &amp; Robotics</h4>
+        <div class="skill-tags">
+          <span class="skill-tag featured">Robot assembly &amp; testing</span>
+          <span class="skill-tag featured">Sensor calibration</span>
+          <span class="skill-tag featured">Computer vision systems</span>
+          <span class="skill-tag">Electro-mechanical integration</span>
+          <span class="skill-tag">RGB cameras</span>
+          <span class="skill-tag">ArUco markers</span>
+          <span class="skill-tag">Motor control</span>
+          <span class="skill-tag">Kinematics validation</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <h4>— Manufacturing</h4>
+        <div class="skill-tags">
+          <span class="skill-tag featured">Quality control</span>
+          <span class="skill-tag featured">Root cause analysis</span>
+          <span class="skill-tag featured">Component testing</span>
+          <span class="skill-tag">Production documentation</span>
+          <span class="skill-tag">Cross-functional collaboration</span>
+          <span class="skill-tag">Hardware ↔ software integration</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <h4>— Languages</h4>
+        <div class="skill-tags">
+          <span class="skill-tag featured">Python</span>
+          <span class="skill-tag featured">SQL</span>
+          <span class="skill-tag featured">PySpark</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Scala</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">R</span>
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">Bash</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <h4>— Data &amp; Analytics</h4>
+        <div class="skill-tags">
+          <span class="skill-tag featured">Spark</span>
+          <span class="skill-tag featured">Kafka</span>
+          <span class="skill-tag featured">Airflow</span>
+          <span class="skill-tag featured">dbt</span>
+          <span class="skill-tag">Snowflake</span>
+          <span class="skill-tag">Databricks</span>
+          <span class="skill-tag">Neo4j</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Power BI</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal" style="grid-column: 1 / -1;">
+        <h4>— Cloud &amp; Infrastructure</h4>
+        <div class="skill-tags">
+          <span class="skill-tag featured">AWS</span>
+          <span class="skill-tag featured">Docker</span>
+          <span class="skill-tag featured">Kubernetes</span>
+          <span class="skill-tag featured">Terraform</span>
+          <span class="skill-tag">Helm</span>
+          <span class="skill-tag">GitHub Actions</span>
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">Django</span>
+          <span class="skill-tag">ECS / EKS / Fargate</span>
+          <span class="skill-tag">Prometheus</span>
+          <span class="skill-tag">Grafana</span>
+          <span class="skill-tag">Azure</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-label">— Certifications</span>
+        <h2 class="section-title">Continued <em>learning.</em></h2>
+      </div>
+      <p class="section-desc">
+        Foundational coursework I've validated end-to-end — beyond the M.S. curriculum.
+      </p>
+    </div>
+
+    <div class="certs-list">
+      <a class="cert reveal" href="https://www.linkedin.com/in/priyanshu-m-sharma/details/certifications/" target="_blank" rel="noopener">
+        <div class="cert-mark">DL</div>
+        <div class="cert-body">
+          <strong>Deep Learning Specialization</strong>
+          <span>DeepLearning.AI · Andrew Ng · Dec 2023</span>
+        </div>
+        <svg class="cert-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="cert reveal" href="https://www.linkedin.com/in/priyanshu-m-sharma/details/certifications/" target="_blank" rel="noopener">
+        <div class="cert-mark">AI</div>
+        <div class="cert-body">
+          <strong>Deloitte AI Academy Certification</strong>
+          <span>Deloitte Technology Academy · Nov 2023</span>
+        </div>
+        <svg class="cert-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="cert reveal" href="https://www.linkedin.com/in/priyanshu-m-sharma/details/certifications/" target="_blank" rel="noopener">
+        <div class="cert-mark">ML</div>
+        <div class="cert-body">
+          <strong>Cloud ML Practicum</strong>
+          <span>Deloitte AI Guild · 2024</span>
+        </div>
+        <svg class="cert-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="cert reveal" href="https://www.linkedin.com/in/priyanshu-m-sharma/details/certifications/" target="_blank" rel="noopener">
+        <div class="cert-mark">ML</div>
+        <div class="cert-body">
+          <strong>MATLAB Programming Techniques</strong>
+          <span>MathWorks Training Services · Sep 2024</span>
+        </div>
+        <svg class="cert-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-label">— Contact</span>
+        <h2 class="section-title">Let's <em>build</em> something.</h2>
+      </div>
+      <p class="section-desc">
+        Open to AI / ML / Robotics SWE roles. Available immediately and happy to chat either way.
+      </p>
+    </div>
+
+    <div class="contact-wrap reveal">
+      <div class="contact-left">
+        <h3>Got a <em>hard problem?</em></h3>
+        <p>
+          I respond to most messages within 24 hours. Best topics: agentic AI architectures, RAG that actually works in production, fine-tuning tradeoffs, and the question of when not to use an LLM at all.
+        </p>
+        <div class="contact-direct">
+          <a href="mailto:mrityunjay2627@gmail.com">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            mrityunjay2627@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/priyanshu-m-sharma" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+            linkedin.com/in/priyanshu-m-sharma
+          </a>
+          <a href="https://github.com/mrityunjay2627" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            github.com/mrityunjay2627
+          </a>
+          <a href="tel:+14805776362">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +1 (480) 577-6362
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <form id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <div class="form-row">
+            <label for="cname">Name</label>
+            <input type="text" id="cname" name="name" required />
+          </div>
+          <div class="form-row">
+            <label for="cemail">Email</label>
+            <input type="email" id="cemail" name="email" required />
+          </div>
+          <div class="form-row">
+            <label for="ccompany">Company / org (optional)</label>
+            <input type="text" id="ccompany" name="company" />
+          </div>
+          <div class="form-row">
+            <label for="cmsg">Message</label>
+            <textarea id="cmsg" name="message" required placeholder="What are you working on?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+            Send message
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+          <div class="form-status" id="formStatus"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>© 2026 Priyanshu M Sharma.</div>
+      <div>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // --- Reveal on scroll ---
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // --- Project filtering ---
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projects = document.querySelectorAll('.project');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      projects.forEach(p => {
+        if (filter === 'all' || p.dataset.cat === filter) {
+          p.style.display = '';
+          p.style.opacity = '0';
+          p.style.transform = 'translateY(8px)';
+          requestAnimationFrame(() => {
+            p.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            p.style.opacity = '1';
+            p.style.transform = 'translateY(0)';
+          });
+        } else {
+          p.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // --- Contact form (Formspree async submission) ---
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = 'Sending...';
+    status.className = 'form-status';
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' }
+      });
+      if (res.ok) {
+        status.textContent = '✓ Message sent. I\'ll respond within 24 hours.';
+        status.className = 'form-status success';
+        form.reset();
+      } else {
+        const json = await res.json().catch(() => ({}));
+        status.textContent = json.error || 'Could not send. Email me directly at mrityunjay2627@gmail.com.';
+        status.className = 'form-status error';
+      }
+    } catch {
+      status.textContent = 'Network error. Email me directly at mrityunjay2627@gmail.com.';
+      status.className = 'form-status error';
+    }
+  });
+</script>
+
+</body>
+</html>
