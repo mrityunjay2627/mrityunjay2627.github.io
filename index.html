@@ -315,7 +315,7 @@
   .section-head {
     margin-bottom: 48px;
     display: flex; align-items: baseline; justify-content: space-between;
-    gap: 32px; flex-wrap: wrap;
+    gap: 40px; flex-wrap: wrap;
 
     background: #fefcf7;
     border: 1px solid rgba(26, 22, 18, 0.14);
@@ -324,6 +324,9 @@
     box-shadow: var(--shadow-soft);
     transition: border-color 0.25s, box-shadow 0.25s;
   }
+  /* Left column (label + title) and right column (description) share the row */
+  .section-head > div { flex: 1 1 380px; min-width: 0; }
+  .section-head > p.section-desc { flex: 1 1 320px; min-width: 0; }
   .section-head:hover {
     border-color: var(--orange);
     box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.16);
@@ -348,7 +351,7 @@
     display: block;
   }
   .section-desc {
-    max-width: 460px; color: var(--ink-soft);
+    color: var(--ink-soft);
     font-size: 1rem; line-height: 1.6;
   }
 
