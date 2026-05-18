@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Priyanshu M Sharma — AI / ML / Robotics Engineer</title>
-<meta name="description" content="Priyanshu M Sharma — AI Engineer, ML Engineer, and Robotics Software Engineer. M.S. Robotics and Autonomous Systems (AI) at Arizona State University. Ex-Deloitte." />
+<title>Priyanshu M Sharma — AI / ML / Systems Engineer</title>
+<meta name="description" content="Priyanshu M Sharma — AI Engineer, ML Engineer, and Systems Engineer. M.S. Robotics and Autonomous Systems (AI) at Arizona State University. Ex-Deloitte." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -172,7 +172,7 @@
   .hero { padding: 80px 0 70px; position: relative; }
   .hero-grid {
     display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px;
-    align-items: start;
+    align-items: stretch;
   }
   @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
 
@@ -249,17 +249,15 @@
     transform: translateY(-1px);
   }
 
-  /* Hero profile photo (right column) */
+  /* Hero profile photo (right column) — square, matches intro panel height */
   .hero-photo {
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 22px;
+    display: flex;
+    align-items: stretch; justify-content: center;
   }
   .hero-photo-frame {
     position: relative;
-    width: 100%; max-width: 340px;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
+    width: 100%;
+    border-radius: 4px;
     overflow: hidden;
     border: 4px solid var(--orange);
     box-shadow: 0 18px 48px rgba(26, 22, 18, 0.18), 0 0 0 8px rgba(214, 84, 31, 0.08);
@@ -286,28 +284,9 @@
     font-weight: 900; font-size: 6rem;
     letter-spacing: 0.04em;
   }
-  .hero-photo-caption {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--orange-deep);
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-weight: 600;
-    padding: 8px 16px;
-    background: #fefcf7;
-    border: 1px solid rgba(214, 84, 31, 0.3);
-    border-radius: 999px;
-  }
-  .availability-dot {
-    width: 8px; height: 8px;
-    background: #2d8a3e;
-    border-radius: 50%;
-    box-shadow: 0 0 0 3px rgba(45, 138, 62, 0.18);
-    flex-shrink: 0;
-  }
+  /* On mobile the photo stacks below the intro — give it a square aspect ratio */
   @media (max-width: 900px) {
-    .hero-photo-frame { max-width: 240px; }
+    .hero-photo-frame { aspect-ratio: 1 / 1; max-width: 360px; margin: 0 auto; }
   }
 
   /* ---------- SECTION SCAFFOLDING ---------- */
@@ -502,13 +481,45 @@
     width: 2px; background: var(--ink);
     opacity: 0.18;
   }
-  .tl-item { position: relative; padding-bottom: 40px; }
+  .tl-item { position: relative; padding-bottom: 24px; }
   .tl-item:last-child { padding-bottom: 0; }
   .tl-item::before {
-    content: ''; position: absolute; left: -32px; top: 8px;
+    content: ''; position: absolute; left: -32px; top: 14px;
     width: 14px; height: 14px; border-radius: 50%;
     background: #fefcf7; border: 2.5px solid var(--orange);
+    z-index: 1;
   }
+  /* Collapsible summary row */
+  .tl-summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    border: 1px solid rgba(26, 22, 18, 0.12);
+    border-radius: 6px;
+    background: #fefcf7;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .tl-summary::-webkit-details-marker { display: none; }
+  .tl-summary:hover {
+    border-color: var(--orange);
+    box-shadow: 0 4px 14px rgba(214, 84, 31, 0.12);
+  }
+  .tl-item[open] > .tl-summary {
+    border-color: var(--orange);
+    border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+    background: rgba(214, 84, 31, 0.04);
+  }
+  .tl-head { flex: 1; min-width: 0; }
+  .tl-chevron {
+    color: var(--orange);
+    flex-shrink: 0;
+    display: flex; align-items: center;
+    padding-top: 2px;
+    transition: transform 0.3s ease;
+  }
+  .tl-item[open] > .tl-summary .tl-chevron { transform: rotate(180deg); }
   .tl-date {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.76rem; color: var(--orange);
@@ -521,10 +532,16 @@
   }
   .tl-company {
     color: var(--ink-soft); font-size: 0.95rem;
-    margin-bottom: 14px;
   }
   .tl-company strong { color: var(--ink); font-weight: 600; }
-  .tl-body { font-size: 0.94rem; color: var(--ink-soft); line-height: 1.65; }
+  .tl-body {
+    font-size: 0.94rem; color: var(--ink-soft); line-height: 1.65;
+    border: 1px solid var(--orange);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    padding: 16px 20px 18px;
+    background: #fefcf7;
+  }
   .tl-body ul { list-style: none; padding-left: 0; }
   .tl-body li {
     padding: 6px 0 6px 22px; position: relative;
@@ -537,36 +554,69 @@
   .tl-body li .num { color: var(--orange-deep); font-weight: 700; }
 
   /* ---------- PROJECTS ---------- */
-  .filters {
-    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px;
+  /* Collapsible category accordion */
+  .project-accordion {
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .proj-cat {
     background: #fefcf7;
-    padding: 14px 18px;
     border: 1px solid rgba(26, 22, 18, 0.14);
-    border-radius: 999px;
+    border-radius: 8px;
     box-shadow: var(--shadow-soft);
-    width: fit-content;
+    transition: border-color 0.25s, box-shadow 0.25s;
   }
-  .filter-btn {
-    padding: 8px 16px; border-radius: 999px;
-    background: transparent; border: 1px solid rgba(26, 22, 18, 0.16);
-    color: var(--ink-soft); font-family: inherit;
-    font-size: 0.85rem; cursor: pointer;
-    transition: all 0.2s;
+  .proj-cat[open] {
+    border-color: var(--orange);
+    box-shadow: 0 1px 0 rgba(214, 84, 31, 0.06), 0 12px 36px rgba(214, 84, 31, 0.14);
   }
-  .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
-  .filter-btn.active {
-    background: var(--ink); color: #fefcf7;
-    border-color: var(--ink);
+  .proj-cat-summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+    padding: 22px 28px;
+    transition: background 0.2s;
   }
-  .filter-btn .count {
+  .proj-cat-summary::-webkit-details-marker { display: none; }
+  .proj-cat-summary:hover { background: rgba(214, 84, 31, 0.04); }
+  .proj-cat[open] > .proj-cat-summary {
+    border-bottom: 1px solid rgba(214, 84, 31, 0.22);
+  }
+  .proj-cat-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem; font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .proj-cat[open] > .proj-cat-summary .proj-cat-name { color: var(--orange); }
+  .proj-cat-right {
+    display: flex; align-items: center; gap: 16px;
+    flex-shrink: 0;
+  }
+  .proj-cat-count {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem; opacity: 0.6; margin-left: 4px;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
+  .proj-cat-chevron {
+    color: var(--orange);
+    display: flex; align-items: center;
+    transition: transform 0.3s ease;
+  }
+  .proj-cat[open] > .proj-cat-summary .proj-cat-chevron { transform: rotate(180deg); }
+  .proj-cat .projects-grid { padding: 28px; }
 
   .projects-grid {
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
   }
   @media (max-width: 820px) { .projects-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 720px) {
+    .proj-cat-summary { padding: 18px 20px; }
+    .proj-cat-name { font-size: 1.25rem; }
+    .proj-cat .projects-grid { padding: 20px; }
+  }
 
   .project {
     background: #fefcf7;
@@ -870,7 +920,7 @@
         </h1>
         <p class="lede reveal">
           M.S. Robotics and Autonomous Systems (AI) from <strong>Arizona State University</strong>, ex-<strong>Deloitte</strong> consulting analyst.
-          I work across <strong>AI engineering</strong>, <strong>ML engineering</strong>, and <strong>robotics software</strong> —
+          I work across <strong>AI engineering</strong>, <strong>ML engineering</strong>, and <strong>systems engineering</strong> —
           building agentic systems, fine-tuned LLMs, and the infrastructure that keeps them running in production.
         </p>
         <div class="hero-cta reveal">
@@ -906,7 +956,7 @@
         <h2 class="section-title">Three lanes, <em>one engineer.</em></h2>
       </div>
       <p class="section-desc">
-        My background sits at the intersection of applied AI, model work, and robotics software. Here's what each lane looks like in practice.
+        My background sits at the intersection of applied AI, model work, and the systems that run them in production. Here's what each lane looks like in practice.
       </p>
     </div>
 
@@ -947,17 +997,18 @@
 
       <div class="lane reveal">
         <div class="lane-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M8 8V4M16 8V4M9 14h.01M15 14h.01M9 18h6"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="6" rx="1.5"/><rect x="2" y="15" width="20" height="6" rx="1.5"/><path d="M6 6h.01M6 18h.01M10 6h6M10 18h6"/></svg>
         </div>
-        <h3>Robotics SWE</h3>
+        <h3>Systems Engineer</h3>
         <p>
-          Where AI meets physical systems. Digital twins, kinematics, vision-guided motion planning, and the Python ↔ ROS2 ↔ hardware link. I think in coordinate frames and joint limits.
+          The infrastructure that keeps AI in production: containerized services, IaC, CI/CD, observability, and streaming data pipelines. I care about what survives 3 AM — and why hardware, ops, and supply-chain systems break.
         </p>
         <div class="lane-tags">
-          <span class="lane-tag">ROS2</span>
-          <span class="lane-tag">OpenCV</span>
-          <span class="lane-tag">MATLAB / Simscape</span>
-          <span class="lane-tag">Reinforcement Learning</span>
+          <span class="lane-tag">Kubernetes</span>
+          <span class="lane-tag">Terraform</span>
+          <span class="lane-tag">CI/CD</span>
+          <span class="lane-tag">DataOps</span>
+          <span class="lane-tag">Observability</span>
         </div>
       </div>
     </div>
@@ -983,59 +1034,33 @@
         <ul>
           <li><span>Status</span> <span class="qf-status">Open to work</span></li>
           <li><span>Recent</span> <span>CoDe Lab · ASU</span></li>
-          <li><span>Focus</span> <span class="qf-wrap">Agentic AI · GenAI & LLM Systems · ML Infrastructure · Robotics</span></li>
-          <li><span>Looking for</span> <span>AI / ML / Robotics SWE roles</span></li>
+          <li><span>Focus</span> <span class="qf-wrap">Agentic AI · LLM Systems · ML Infra · DataOps · Systems Engineering</span></li>
+          <li><span>Looking for</span> <span>AI / ML / Systems Engineer roles</span></li>
           <li><span>Degree</span> <span>Master of Science</span></li>
           <li><span>Course</span> <span class="qf-wrap">Robotics and Autonomous Systems (AI)</span></li>
           <li><span>University</span> <span class="qf-wrap">Arizona State University</span></li>
-          <li><span>GPA</span> <span>3.92 / 4.00</span></li>
+          <li><span>GPA</span> <span>3.93 / 4.00</span></li>
         </ul>
       </div>
 
       <div class="about-prose reveal">
         <p>
-          I started out at <strong>VIT</strong> with a B.Tech. in CS &amp; Business Systems — a hybrid program that
-          paired the engineering core with finance, operations, and product thinking. That mix turned out to be the
-          thread that's followed me everywhere since.
+          I started at <strong>VIT</strong> with a B.Tech. in CS &amp; Business Systems — a hybrid of the engineering
+          core with finance, operations, and product thinking that's been the thread ever since. After a business
+          analyst stint at <strong>Upthrust</strong> and a software engineering internship at <strong>Eigengram</strong>,
+          a medical AI startup, I joined <strong>Deloitte</strong> as a Consulting Analyst — a year embedded with global
+          clients, <span class="marked">shipping AI systems on tight deadlines and presenting architecture tradeoffs to
+          senior stakeholders</span>. I'm now finishing an <strong>M.S. in Robotics and Autonomous Systems (AI) at
+          Arizona State University</strong> (3.93 GPA), with two research roles along the way — agentic AI for aerospace
+          mission analysis at the CoDe Lab, and autonomous blimp control at the AMASS Lab.
         </p>
         <p>
-          My first real exposure to the field was a six-month stint as a <strong>business analyst at Upthrust</strong>,
-          where I lived in BI dashboards, built sales funnels with senior leadership, and learned how a clean piece of
-          analysis can move a real decision. The summer after that, I joined <strong>Eigengram</strong> — a medical AI
-          startup — as a software engineer intern, working alongside the two technical founders on data pipelines and
-          model deployment for clinical applications. It was my first taste of what shipping AI under real constraints
-          actually feels like.
-        </p>
-        <p>
-          From there I joined <strong>Deloitte</strong> as a Consulting Analyst in Strategy &amp; Analytics, where I
-          spent a year embedded with global clients — building <span class="marked">AI systems on tight deadlines,
-          presenting architecture tradeoffs to senior stakeholders</span>, and operating inside an agile delivery
-          framework with code reviews, sprint planning, and weekly client demos. That's where I learned to translate
-          technical complexity into business impact without losing the underlying rigor.
-        </p>
-        <p>
-          I'm now finishing an <strong>M.S. in Robotics and Autonomous Systems (AI) at Arizona State University</strong> with a 3.89 GPA.
-          Beyond the core AI/ML coursework, I've worked on <strong>symbolic planning, reinforcement learning,
-          and digital twins for collaborative robots</strong> — wiring perception, kinematics, and learning into
-          systems that move actual hardware. Two research roles along the way: agentic AI for aerospace mission
-          analysis at the CoDe Lab, and autonomous blimp control at the AMASS Lab.
-        </p>
-        <p>
-          What I bring to a team is range. I move fluidly between <strong>Python data pipelines</strong>, <strong>cloud
-          infrastructure</strong>, <strong>LLM orchestration frameworks</strong>, and <strong>containerized
-          deployments</strong> — but the real value isn't tool fluency. It's knowing <em>when Kafka is overkill versus
-          when Kinesis won't scale</em>, or why a RAG pipeline fails without proper chunking.
-        </p>
-        <p>
-          On the <strong>ML side</strong>, that same instinct shows up around <em>when LoRA is enough versus when you
-          actually need a full fine-tune</em>, when a quick CNN beats reaching for a Vision Transformer, and how to
-          read a training curve before the metrics catch up to you. And on the <strong>robotics software</strong> side,
-          it's knowing <em>when symbolic planning gives you the guarantees RL won't</em>, when a digital twin saves a
-          week of hardware iteration, and where coordinate frames usually go wrong.
-        </p>
-        <p>
-          I'm looking for roles where I'm embedded with the problem, not isolated in a backend silo — building systems
-          that ship, learning the user's domain, and getting energized by messy, high-impact work.
+          What I bring to a team is range across <strong>AI, ML, data infrastructure, and the systems that run
+          them</strong> — but the real value isn't tool fluency. It's knowing <em>when Kafka is overkill versus when
+          Kinesis won't scale</em>, <em>when LoRA is enough versus when you actually need a full fine-tune</em>, and
+          <em>when symbolic planning gives you guarantees RL won't</em>. I'd rather work the messy, high-impact problem
+          embedded with the team — building systems that ship and learning the user's domain — than sit isolated in a
+          backend silo.
         </p>
       </div>
     </div>
@@ -1058,10 +1083,17 @@
     <div class="timeline-wrap reveal">
       <div class="timeline">
 
-        <div class="tl-item">
-          <div class="tl-date">Jan 2026 — May 2026</div>
-          <div class="tl-role">Graduate Research Assistant</div>
-          <div class="tl-company"><strong>Collective Design (CoDe) Lab</strong> · Arizona State University · Tempe, AZ</div>
+        <details class="tl-item" open>
+          <summary class="tl-summary">
+            <div class="tl-head">
+              <div class="tl-date">Jan 2026 — May 2026</div>
+              <div class="tl-role">Graduate Research Assistant</div>
+              <div class="tl-company"><strong>Collective Design (CoDe) Lab</strong> · Arizona State University · Tempe, AZ</div>
+            </div>
+            <span class="tl-chevron" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </summary>
           <div class="tl-body">
             <ul>
               <li>Built an <strong>MCP-based agentic interface</strong> to NASA's TAT-C aerospace toolkit; reduced mission analysis from <span class="num">hours to under 5 minutes</span> across 42 test cases.</li>
@@ -1070,24 +1102,38 @@
               <li>Restructured 20+ low-level Python API calls into 4 semantic tool wrappers — raising end-to-end planning success from <span class="num">23% to 77%</span>.</li>
             </ul>
           </div>
-        </div>
+        </details>
 
-        <div class="tl-item">
-          <div class="tl-date">Sep 2025 — Dec 2025</div>
-          <div class="tl-role">Graduate Service Assistant</div>
-          <div class="tl-company"><strong>Yu Research Group / AMASS Lab</strong> · Arizona State University · Tempe, AZ</div>
+        <details class="tl-item">
+          <summary class="tl-summary">
+            <div class="tl-head">
+              <div class="tl-date">Sep 2025 — Dec 2025</div>
+              <div class="tl-role">Graduate Service Assistant</div>
+              <div class="tl-company"><strong>Yu Research Group / AMASS Lab</strong> · Arizona State University · Tempe, AZ</div>
+            </div>
+            <span class="tl-chevron" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </summary>
           <div class="tl-body">
             <ul>
               <li>Teaching support for <strong>RAS 501 (Applied Linear Algebra for Engineers)</strong> under Prof. Xi Yu: office hours, technical questions, grading assignments and exams.</li>
               <li>Contributed to AMASS Lab research on <strong>autonomous blimp control systems</strong> using Python and ROS2 — lighter-than-air autonomous platforms.</li>
             </ul>
           </div>
-        </div>
+        </details>
 
-        <div class="tl-item">
-          <div class="tl-date">Sep 2023 — Jul 2024</div>
-          <div class="tl-role">Consulting Analyst — Strategy &amp; Analytics</div>
-          <div class="tl-company"><strong>Deloitte USI</strong> · Bengaluru, India</div>
+        <details class="tl-item">
+          <summary class="tl-summary">
+            <div class="tl-head">
+              <div class="tl-date">Sep 2023 — Jul 2024</div>
+              <div class="tl-role">Consulting Analyst — Strategy &amp; Analytics</div>
+              <div class="tl-company"><strong>Deloitte USI</strong> · Bengaluru, India</div>
+            </div>
+            <span class="tl-chevron" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </summary>
           <div class="tl-body">
             <ul>
               <li>Delivered AI-driven contract redlining POC for a <strong>Fortune 50 global life sciences client</strong>; POC outcome determined the firm's bid on the full production engagement.</li>
@@ -1097,12 +1143,19 @@
               <li>Presented technical tradeoffs (latency, accuracy, cost) to senior client stakeholders across US, UK, and India.</li>
             </ul>
           </div>
-        </div>
+        </details>
 
-        <div class="tl-item">
-          <div class="tl-date">Jun 2023 — Aug 2023</div>
-          <div class="tl-role">Software Engineer Intern</div>
-          <div class="tl-company"><strong>Eigengram</strong> · Gurugram, India</div>
+        <details class="tl-item">
+          <summary class="tl-summary">
+            <div class="tl-head">
+              <div class="tl-date">Jun 2023 — Aug 2023</div>
+              <div class="tl-role">Software Engineer Intern</div>
+              <div class="tl-company"><strong>Eigengram</strong> · Gurugram, India</div>
+            </div>
+            <span class="tl-chevron" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </summary>
           <div class="tl-body">
             <ul>
               <li>Worked alongside two technical AI founders at an early-stage medical AI startup on data pipelines and ML model deployment.</li>
@@ -1110,12 +1163,19 @@
               <li>Deployed CNN medical imaging models and a BERT-powered clinical Q&amp;A chatbot through Django REST APIs on AWS EC2.</li>
             </ul>
           </div>
-        </div>
+        </details>
 
-        <div class="tl-item">
-          <div class="tl-date">Jan 2023 — Jun 2023</div>
-          <div class="tl-role">Business Analyst Intern</div>
-          <div class="tl-company"><strong>Upthrust Inc.</strong> · Gurugram, India</div>
+        <details class="tl-item">
+          <summary class="tl-summary">
+            <div class="tl-head">
+              <div class="tl-date">Jan 2023 — Jun 2023</div>
+              <div class="tl-role">Business Analyst Intern</div>
+              <div class="tl-company"><strong>Upthrust Inc.</strong> · Gurugram, India</div>
+            </div>
+            <span class="tl-chevron" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </summary>
           <div class="tl-body">
             <ul>
               <li>Conducted in-depth market research using BI platforms to monitor industry trends, evaluate competitive positioning, and identify growth opportunities for data-driven decision-making.</li>
@@ -1124,7 +1184,7 @@
               <li>Designed and implemented <strong>sales funnels and pipelines</strong> with senior leadership — streamlining lead qualification, reducing acquisition costs, and lifting revenue potential.</li>
             </ul>
           </div>
-        </div>
+        </details>
 
       </div>
     </div>
@@ -1140,19 +1200,67 @@
         <h2 class="section-title">Things I've <em>shipped.</em></h2>
       </div>
       <p class="section-desc">
-        Each project below moved a metric, not a slide. Filter by lane to see how the work clusters across AI, ML, and robotics.
+        Each project below moved a metric, not a slide. Expand a lane to see how the work clusters across AI, ML, robotics, and infrastructure.
       </p>
     </div>
 
-    <div class="filters reveal">
-      <button class="filter-btn active" data-filter="all">All <span class="count">12</span></button>
-      <button class="filter-btn" data-filter="ai">AI Engineering <span class="count">4</span></button>
-      <button class="filter-btn" data-filter="ml">ML Engineering <span class="count">3</span></button>
-      <button class="filter-btn" data-filter="data">Data / Infra <span class="count">2</span></button>
-      <button class="filter-btn" data-filter="robotics">Robotics <span class="count">3</span></button>
+    <!-- Collapsible category panels — JS distributes cards into these on load -->
+    <div class="project-accordion reveal">
+      <details class="proj-cat" data-cat="ai" open>
+        <summary class="proj-cat-summary">
+          <span class="proj-cat-name">AI Engineering</span>
+          <span class="proj-cat-right">
+            <span class="proj-cat-count">3 projects</span>
+            <span class="proj-cat-chevron" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </span>
+        </summary>
+        <div class="projects-grid" data-grid="ai"></div>
+      </details>
+
+      <details class="proj-cat" data-cat="ml">
+        <summary class="proj-cat-summary">
+          <span class="proj-cat-name">ML Engineering</span>
+          <span class="proj-cat-right">
+            <span class="proj-cat-count">3 projects</span>
+            <span class="proj-cat-chevron" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </span>
+        </summary>
+        <div class="projects-grid" data-grid="ml"></div>
+      </details>
+
+      <details class="proj-cat" data-cat="data">
+        <summary class="proj-cat-summary">
+          <span class="proj-cat-name">Data / Infrastructure</span>
+          <span class="proj-cat-right">
+            <span class="proj-cat-count">3 projects</span>
+            <span class="proj-cat-chevron" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </span>
+        </summary>
+        <div class="projects-grid" data-grid="data"></div>
+      </details>
+
+      <details class="proj-cat" data-cat="robotics">
+        <summary class="proj-cat-summary">
+          <span class="proj-cat-name">Robotics</span>
+          <span class="proj-cat-right">
+            <span class="proj-cat-count">3 projects</span>
+            <span class="proj-cat-chevron" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </span>
+        </summary>
+        <div class="projects-grid" data-grid="robotics"></div>
+      </details>
     </div>
 
-    <div class="projects-grid">
+    <!-- Source pool: all project cards live here, hidden; JS moves them into the panels above -->
+    <div class="projects-grid" id="projectsPool" hidden>
 
       <!-- Project 1: TAT-C / MCP -->
       <article class="project reveal" data-cat="ai">
@@ -2071,7 +2179,7 @@
         <h2 class="section-title">Let's <em>build</em> something.</h2>
       </div>
       <p class="section-desc">
-        Open to AI / ML / Robotics SWE roles. Available immediately and happy to chat either way.
+        Open to AI / ML / Systems Engineer roles. Available immediately and happy to chat either way.
       </p>
     </div>
 
@@ -2180,30 +2288,23 @@
     });
   }
 
-  // --- Project filtering ---
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const projects = document.querySelectorAll('.project');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      projects.forEach(p => {
-        if (filter === 'all' || p.dataset.cat === filter) {
-          p.style.display = '';
-          p.style.opacity = '0';
-          p.style.transform = 'translateY(8px)';
-          requestAnimationFrame(() => {
-            p.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-            p.style.opacity = '1';
-            p.style.transform = 'translateY(0)';
-          });
-        } else {
-          p.style.display = 'none';
-        }
-      });
+  // --- Distribute project cards into their category accordion panels ---
+  (function () {
+    const pool = document.getElementById('projectsPool');
+    if (!pool) return;
+    const cards = Array.from(pool.querySelectorAll('.project'));
+    cards.forEach(card => {
+      const cat = card.dataset.cat;
+      const targetGrid = document.querySelector('.projects-grid[data-grid="' + cat + '"]');
+      if (targetGrid) targetGrid.appendChild(card);
     });
-  });
+    // Remove the now-empty hidden pool
+    pool.remove();
+    // Re-observe any cards for the reveal animation (they were moved after initial observe)
+    document.querySelectorAll('.proj-cat .project.reveal').forEach(el => {
+      el.classList.add('visible');
+    });
+  })();
 
   // --- Contact form (Formspree async submission) ---
   const form = document.getElementById('contactForm');
