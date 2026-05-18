@@ -2307,6 +2307,28 @@
     });
   })();
 
+  // --- Exclusive accordions: opening one closes the others in the same group ---
+  (function () {
+    function makeExclusive(selector) {
+      const items = Array.from(document.querySelectorAll(selector));
+      items.forEach(item => {
+        item.addEventListener('toggle', () => {
+          // Only act when this item was just opened
+          if (!item.open) return;
+          items.forEach(other => {
+            if (other !== item && other.open) {
+              other.open = false;
+            }
+          });
+        });
+      });
+    }
+    // Experience timeline cards
+    makeExclusive('.timeline .tl-item');
+    // Project category panels
+    makeExclusive('.project-accordion .proj-cat');
+  })();
+
   // --- Contact form (Formspree async submission) ---
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
